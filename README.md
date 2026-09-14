@@ -4,9 +4,11 @@ Interactieve leerstof van **Al-Manārah** — de drie fundamenten, Aṣl ad-Dīn
 
 ## Openen
 
-**Live site:** https://younes0zero.github.io/al-wajibat/
+**Live site:** https://1abumohamed.github.io/al-wajibat/
 
 Of open `index.html` lokaal in Safari / Chrome.
+
+**Repo:** https://github.com/1AbuMohamed/al-wajibat
 
 ## Inhoud
 
