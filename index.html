@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Al-Wājibāt">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#173b3f">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="Al-Manārah · Al-Wājibāt — verbeterde studiewebsite, afgestemd op de aangeleverde oefentoets en het correctievoorschrift.">
+<title>Al-Manārah · Al-Wājibāt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f0e8;
+  --card:#faf7f2;
+  --border:#e5ddd0;
+  --text:#1a2e30;
+  --muted:#6b7a7c;
+  --brown:#173b3f;
+  --btn:#173b3f;
+  --gold:#bf9d56;
+  --gold-soft:#d4bc7a;
+  --soft:#e8f0ef;
+  --num:#e4eceb;
+  --nav:#faf7f2;
+  --hero:#173b3f;
+}
+[data-theme=dark]{
+  --bg:#0f1a1b;
+  --card:#1a282a;
+  --border:#2a3a3c;
+  --text:#e8f0ef;
+  --muted:#8aa0a2;
+  --brown:#7eb0b5;
+  --btn:#bf9d56;
+  --gold:#bf9d56;
+  --gold-soft:#d4bc7a;
+  --soft:#1e3032;
+  --num:#243436;
+  --nav:#152224;
+  --hero:#0d1f21;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;height:100dvh;margin:0;padding:0;overflow:hidden;background:var(--bg)}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:15px;overflow:hidden;transition:background .25s,color .25s}
+#app{display:flex;flex-direction:column;height:100%;height:100dvh;max-width:480px;margin:0 auto;position:relative;overflow:hidden;background:var(--bg)}
+.screen{display:none;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 20px calc(72px + env(safe-area-inset-bottom,0px))}
+.screen.active{display:block}
+.home{display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:48px;max-width:380px;margin:0 auto}
+.ar{font-family:Amiri,serif;font-size:28px;color:var(--brown);margin-bottom:4px}
+.ht{font-size:26px;font-weight:700;margin-bottom:4px}
+.hs{font-size:14px;color:var(--muted);margin-bottom:32px}
+.ml{width:100%;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.mi{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;text-align:left;cursor:pointer;width:100%;font-family:inherit;color:var(--text)}
+.mi:active{transform:scale(.98)}
+.mi .n{width:32px;height:32px;border-radius:50%;background:var(--num);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--brown);flex-shrink:0}
+.mi .i{flex:1}.mi .i strong{display:block;font-size:15px;font-weight:600}.mi .i span{font-size:13px;color:var(--muted)}
+.bm{width:100%;padding:14px;background:var(--gold);color:#173b3f;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit}
+[data-theme=dark] .bm{color:#0f1a1b;background:var(--gold)}
+.sh{margin-bottom:20px}.sh h1{font-size:22px;font-weight:700;margin-bottom:4px}.sh p{font-size:13.5px;color:var(--muted)}
+.tr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+.tb{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--card);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;color:var(--text)}
+.gl{font-size:12px;font-weight:600;color:var(--muted);margin:20px 0 10px;text-transform:uppercase;letter-spacing:.04em}
+.lc{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:8px;cursor:pointer}
+.lc:active{transform:scale(.985)}
+.lc .n{width:30px;height:30px;border-radius:50%;background:var(--num);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--brown);flex-shrink:0}
+.lc .n.done{background:var(--brown);color:#fff}[data-theme=dark] .lc .n.done{color:#1a1714}
+.lc .b{flex:1;min-width:0}.lc .b strong{display:block;font-size:14.5px;font-weight:600}.lc .b span{font-size:12.5px;color:var(--muted)}
+.rt{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.bb{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--card);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--text)}
+.rb{font-size:16px;line-height:1.8}.rb h2{font-size:20px;font-weight:700;margin:0 0 14px}.rb h3{font-size:16px;font-weight:600;margin:22px 0 8px}.rb p{margin-bottom:14px}.rb ul{margin:8px 0 14px 1.2rem}.rb li{margin-bottom:4px}
+.ay,.hd{margin:16px 0;padding:14px 16px;border-radius:12px;font-size:15px;line-height:1.7;background:var(--num)}
+.ay{border-right:3px solid var(--brown)}.hd{border-right:3px solid var(--muted)}.fon{display:block;direction:ltr;text-align:left;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:13px;color:var(--muted);margin:6px 0 4px;font-style:italic;line-height:1.4}
+.nt{margin:14px 0;padding:12px 14px;border-radius:10px;background:var(--soft);font-size:13.5px;line-height:1.5}.nt strong{color:var(--brown)}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px}th,td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}th{background:var(--num);font-weight:600}
+.rn{display:flex;gap:10px;margin-top:28px;padding-bottom:10px}
+.rn button{flex:1;padding:12px;border-radius:10px;border:1px solid var(--border);background:var(--card);font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;color:var(--text)}
+.rn button:disabled{opacity:.35}.rn .nx{background:var(--btn);color:#fff;border:none}[data-theme=dark] .rn .nx{color:#1a1714}
+.oi{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:10px;cursor:pointer}
+.oi:active{transform:scale(.985)}.oi .ic{width:42px;height:42px;border-radius:12px;background:var(--num);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.oi .inf{flex:1}.oi .inf strong{display:block;font-size:15px;font-weight:600;margin-bottom:2px}.oi .inf span{font-size:13px;color:var(--muted)}.oi .arw{color:var(--muted);font-size:18px}
+.fa{display:flex;flex-direction:column;align-items:center;padding-top:20px}
+.fc{width:100%;max-width:340px;min-height:200px;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px 24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:pointer;position:relative}
+.fc.fl{background:var(--btn);color:#fff;border-color:var(--btn)}[data-theme=dark] .fc.fl{color:#1a1714}
+.fc .sd{position:absolute;top:12px;left:16px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;opacity:.5;font-weight:600}
+.fc .q{font-size:17px;font-weight:600;line-height:1.4}.fc .a{font-size:15px;line-height:1.55}
+.fctl{display:flex;align-items:center;gap:16px;margin-top:24px}
+.fctl button{width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:var(--card);font-size:16px;cursor:pointer;color:var(--text)}
+.fctl .c{font-size:13px;color:var(--muted);min-width:50px;text-align:center}
+.fh{font-size:12.5px;color:var(--muted);margin-top:16px}
+.bc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px}
+.bc .v{font-family:Amiri,serif;font-size:18px;line-height:1.7;direction:rtl;text-align:right;margin-bottom:6px}
+.bc .r{font-size:12px;color:var(--muted);margin-bottom:12px}
+.bc .nl{font-size:14px;line-height:1.55;margin:10px 0 12px;color:var(--text)}
+.bc .nl strong{font-size:12px;color:var(--muted);display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em}
+.bc .rv{width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:transparent;font-size:13.5px;font-weight:500;cursor:pointer;font-family:inherit;color:var(--brown)}
+.bc .an{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:14px;line-height:1.5}
+.bc.sh .an{display:block}.bc.sh .rv{display:none}
+.ci{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border);cursor:pointer}
+.ci input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown);flex-shrink:0}
+.ci span{font-size:14px;line-height:1.45}.ci.done span{text-decoration:line-through;opacity:.5}
+.sr{display:flex;gap:10px;margin:20px 0}
+.sb{flex:1;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 8px;text-align:center}
+.sb .nn{font-size:22px;font-weight:700;color:var(--brown)}.sb .ll{font-size:11px;color:var(--muted);margin-top:2px}
+.il{font-size:13.5px;color:var(--muted);margin-bottom:20px;line-height:1.55}.il li{margin:0 0 6px 18px}
+.pb{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:20px}
+.pb table{margin:0}.pb th,.pb td{border:none;border-bottom:1px solid var(--border);padding:10px 14px;font-size:13px}.pb tr:last-child td{border-bottom:none}
+.fd{margin-bottom:14px}.fd label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+.fd input[type=text]{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:var(--card);font-size:15px;font-family:inherit;color:var(--text);outline:none}
+.fch{display:flex;align-items:center;gap:10px;margin-bottom:20px;font-size:14px}.fch input{width:17px;height:17px;accent-color:var(--brown)}
+.nm{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;line-height:1.4}
+.qc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:16px}
+.qc .qm{font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:500}.qc .qt{font-size:15px;font-weight:600;line-height:1.45;margin-bottom:14px}
+.qc .op{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;margin-bottom:6px;border-radius:10px;border:1px solid var(--border);cursor:pointer;font-size:13.5px}
+.qc .op.sel{border-color:var(--brown);background:var(--soft)}.qc .op input{margin-top:2px;accent-color:var(--brown)}
+.qc textarea{width:100%;min-height:90px;padding:12px;border-radius:10px;border:1px solid var(--border);background:var(--bg);font-family:inherit;font-size:14px;color:var(--text);resize:vertical;outline:none}
+.tbar{position:sticky;bottom:70px;display:flex;gap:10px;padding:12px 0;background:var(--bg)}
+.tbar button{flex:1;padding:12px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.tbar .pv{background:var(--card);border:1px solid var(--border);color:var(--text)}.tbar .nx{background:var(--btn);border:none;color:#fff}[data-theme=dark] .tbar .nx{color:#1a1714}
+.rsb{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:32px 20px;text-align:center;margin-bottom:20px}
+.rsb .sc{font-size:48px;font-weight:700;color:var(--brown);line-height:1}.rsb .lb{font-size:13px;color:var(--muted);margin:6px 0 14px}
+.rsb .gr{display:inline-block;padding:5px 14px;border-radius:999px;background:var(--brown);color:#fff;font-size:13px;font-weight:600}[data-theme=dark] .rsb .gr{color:#1a1714}
+.bn{position:absolute;bottom:0;left:0;right:0;width:100%;background:var(--nav);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:8px 0 max(8px, env(safe-area-inset-bottom, 0px));z-index:100;box-sizing:border-box}
+.nb{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 10px;background:none;border:none;cursor:pointer;font-family:inherit;color:var(--muted);font-size:10.5px;font-weight:500;min-width:56px}
+.nb.active{color:var(--brown)}.nb svg{width:22px;height:22px;stroke-width:1.8}
+.nav-brand{display:none;align-items:center;gap:10px;color:var(--text);font-weight:700;white-space:nowrap}
+.nav-brand-mark{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--gold);color:#173b3f;font-family:Amiri,serif;font-size:22px;line-height:1}
+.nav-links{display:flex;align-items:center;justify-content:space-around;gap:4px;width:100%}
+.hidden{display:none!important}
+
+.hero-banner{background:var(--hero);color:#f5f0e8;padding:36px 24px 40px;border-radius:0 0 28px 28px;position:relative;overflow:hidden;text-align:left}
+.hero-banner::before{content:"";position:absolute;top:-50px;right:-50px;width:220px;height:220px;border-radius:50%;border:1.5px solid rgba(191,157,86,.15)}
+.hero-banner::after{content:"";position:absolute;top:30px;right:40px;width:150px;height:150px;border-radius:50%;border:1px solid rgba(191,157,86,.1)}
+.hero-ar{position:absolute;top:24px;right:24px;font-family:Amiri,serif;font-size:20px;color:var(--gold);opacity:.75}
+.hero-logo{width:42px;height:42px;border-radius:12px;background:var(--gold);color:#173b3f;display:flex;align-items:center;justify-content:center;font-family:Amiri,serif;font-size:22px;font-weight:700;margin-bottom:14px}
+.hero-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;font-weight:600}
+.hero-title{font-family:Amiri,serif;font-size:28px;font-weight:700;line-height:1.2;margin-bottom:12px;color:#f5f0e8}
+.hero-desc{font-size:14px;line-height:1.55;opacity:.85;margin-bottom:8px;max-width:340px}
+.hero-shaykh{font-size:12.5px;opacity:.6;margin-bottom:22px}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:#173b3f;border:none;border-radius:999px;padding:12px 22px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.btn-ghost{background:transparent;color:#f5f0e8;border:1.5px solid rgba(245,240,232,.35);border-radius:999px;padding:11px 20px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit}
+.sb .nn{color:var(--gold)!important}
+.rsb .gr{background:var(--gold)!important;color:#173b3f!important}
+.ay{border-right-color:var(--gold)!important}
+
+
+.play-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:10px;padding:8px 14px;
+  border-radius:999px;border:1.5px solid var(--gold);
+  background:transparent;color:var(--brown);
+  font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;
+  transition:background .15s,color .15s;
+}
+.play-btn:hover,.play-btn.playing{
+  background:var(--gold);color:#173b3f;
+}
+.play-btn svg{width:14px;height:14px;fill:currentColor}
+.ay .play-btn,.hd .play-btn{margin-top:12px}
+
+
+.src{font-size:12px;color:var(--muted);margin-top:8px;font-style:italic}
+.play-btn{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--gold);background:transparent;color:var(--brown);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+.play-btn:hover,.play-btn.playing{background:var(--gold);color:#173b3f}
+.play-btn svg{width:14px;height:14px;fill:currentColor}
+
+.hero-logo-img{width:72px;height:72px;border-radius:50%;object-fit:cover;display:block;margin-bottom:14px;box-shadow:0 2px 12px rgba(0,0,0,.25);background:#fff}
+.nav-logo{
+  width:28px;height:28px;border-radius:50%;
+  object-fit:cover;background:#fff;
+  box-shadow:0 1px 3px rgba(0,0,0,.12);
+}
+
+
+.hd{background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin:14px 0}
+.hd-intro{font-size:13.5px;color:var(--muted);margin-bottom:10px;line-height:1.45;font-style:italic}
+.hd-ar{font-family:Amiri,serif;font-size:20px;line-height:1.9;direction:rtl;text-align:right;color:var(--text);margin:8px 0}
+.hd-mean{font-size:14px;line-height:1.55;margin-top:8px;opacity:.9}
+
+/* --- Breedbeeld op laptop / desktop ---
+   Gebruik de desktop-layout ook in een gesplitst laptopvenster. */
+@media (min-width:700px){
+  html,body{
+    height:auto;
+    min-height:100%;
+    overflow-x:hidden;
+    overflow-y:auto;
+    touch-action:pan-y;
+  }
+  body{overflow-x:hidden;overflow-y:auto}
+  #app{
+    width:100%;
+    max-width:none;
+    min-height:100vh;
+    height:auto;
+    padding-top:68px;
+    overflow:visible;
+    touch-action:pan-y;
+  }
+  .screen{
+    min-height:calc(100vh - 68px);
+    overflow:visible;
+    touch-action:pan-y;
+    padding:38px clamp(32px,6vw,96px) 54px;
+  }
+  /* Op pc staat de hoofdnav bovenaan; op gsm blijft hij onderaan. */
+  .bn{
+    position:fixed;
+    top:0;
+    bottom:auto;
+    left:0;
+    right:0;
+    width:100%;
+    height:68px;
+    padding:8px 24px;
+    justify-content:space-between;
+    gap:12px;
+    border-top:none;
+    border-bottom:1px solid var(--border);
+    box-shadow:0 2px 12px rgba(23,59,63,.08);
+  }
+  .nav-brand{display:flex}
+  .nav-links{width:auto;justify-content:flex-end;gap:10px}
+  .nb{min-width:104px;padding:7px 18px;font-size:12px}
+  .nb svg{width:20px;height:20px}
+  .home,.sh,#s-leerstof>.gl,#s-leerstof>.lc,.oi,.pb,.fd,.fch,.il,.nm,.rsb,#rDt,.sr{max-width:none}
+  .hero-banner{border-radius:0;padding:62px clamp(40px,8vw,128px) 68px}
+  .hero-title{font-size:42px}
+  .hero-desc{max-width:700px;font-size:16px}
+  .home{max-width:1100px;padding-top:56px}
+  .ml{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  div[style*="max-width:380px"]{max-width:1100px!important;margin:0 auto}
+  #s-leerstof,#s-oefenen,#s-toets,#s-trun,#s-result{max-width:1180px;margin:0 auto}
+  .rb{max-width:920px;margin:0 auto}
+  .rn{max-width:920px;margin:28px auto 0}
+  .fa{max-width:640px;margin:0 auto}
+  #s-bewijs #bList,#s-check #cList{max-width:920px;margin:0 auto}
+  .sh{max-width:1180px;margin-left:auto;margin-right:auto}
+  .oi{max-width:900px}
+  .pb,.rsb{max-width:920px;margin-left:auto;margin-right:auto}
+  .qc{max-width:920px;margin-left:auto;margin-right:auto}
+  /* Rustigere, normale website-controls op pc. */
+  .mi,.lc,.oi,.pb,.rsb,.bc,.qc,.fc{
+    border-radius:8px;
+    box-shadow:0 1px 3px rgba(23,59,63,.04);
+  }
+  .mi,.lc,.oi{padding:18px 20px}
+  .bm,.btn-gold,.btn-ghost,.play-btn,.sharq,
+  .rn button,.tbar button,.fctl button,.bc .rv,
+  .tb,.bb{
+    border-radius:6px;
+  }
+  .btn-gold,.btn-ghost{padding:12px 20px}
+  .tb,.bb{width:40px;height:40px}
+  .nb{
+    flex-direction:row;
+    gap:8px;
+    min-width:auto;
+    border-radius:4px;
+    padding:10px 14px;
+  }
+  .nb svg{width:18px;height:18px}
+  .lc .n{border-radius:6px;width:34px;height:34px}
+  .mi .n{border-radius:6px}
+  .oi .ic{border-radius:8px}
+  .sharq{margin:4px 3px;padding:8px 12px}
+  .play-btn{padding:9px 14px}
+  .bm{padding:13px 20px}
+  .rn button,.tbar button{padding:12px 18px}
+}
+@media (min-width:1050px){
+  #s-leerstof.active{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    column-gap:20px;
+    align-content:start;
+  }
+  #s-leerstof>.sh,#s-leerstof>.gl{
+    grid-column:1/-1;
+  }
+  #s-leerstof>.gl{margin-top:28px}
+  #s-leerstof>.lc{margin-bottom:0}
+}
+/* Hover-feedback voor muis/trackpad, niet voor touch */
+@media (hover:hover) and (pointer:fine){
+  .mi:hover,.lc:hover,.oi:hover{border-color:var(--gold);background:var(--soft)}
+  .nb:hover:not(.active){color:var(--text)}
+  .tb:hover,.bb:hover{border-color:var(--gold);color:var(--brown)}
+  .bm:hover{filter:brightness(1.06)}
+  .btn-gold:hover{filter:brightness(1.08)}
+  .btn-ghost:hover{background:rgba(245,240,232,.1)}
+  .rn button:hover,.tbar button:hover{border-color:var(--gold)}
+  .fctl button:hover{border-color:var(--gold);color:var(--brown)}
+  .ci:hover span{opacity:.85}
+  .fc:hover{border-color:var(--gold)}
+  .mi,.lc,.oi,.tb,.bb,.bm,.btn-gold,.btn-ghost,.rn button,.tbar button,.fctl button,.fc{transition:border-color .15s,background .15s,filter .15s}
+}
+.hd .fon{direction:ltr;text-align:left;font-size:13px;color:var(--muted);font-style:italic;margin:4px 0 6px}
+.hd .src{font-size:12px;color:var(--muted);margin-top:10px;padding-top:8px;border-top:1px solid var(--border);font-style:normal}
+
+
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  padding-bottom:0;
+  -webkit-tap-highlight-color:transparent;
+  overscroll-behavior-y:none;
+}
+
+button,.mi,.lc,.play-btn,.nb,.bm,.btn-gold,.btn-ghost{
+  -webkit-user-select:none;user-select:none;
+  touch-action:manipulation;
+  cursor:pointer;
+}
+.screen.active{min-height:0}
+
+
+.ex-card{background:var(--card);border:1.5px solid var(--gold);border-radius:14px;padding:14px 16px;margin:12px 0;font-size:14px;line-height:1.55}
+.ex-card strong{display:block;color:var(--brown);margin-bottom:8px;font-size:15px}
+.ex-card p{margin:0 0 10px}
+.ex-close{border:1px solid var(--border);background:var(--soft);border-radius:999px;padding:6px 14px;font-size:13px;cursor:pointer;font-family:inherit;color:var(--text)}
+.sharq{display:inline-block;background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:6px 12px;margin:3px 2px;font-size:13px;cursor:pointer;color:var(--brown);font-weight:600;font-family:inherit}
+.sharq:active{background:var(--gold);color:#173b3f}
+
+</style>
+
+<script>
+/* iOS/Safari compatibility: explicitly expose the interactive API. */
+window.__AL_MANARAH_JS_OK__ = true;
+</script>
+</head>
+<body data-theme="light">
+<div id="app">
+
+<div class="screen active" id="s-start" style="padding:0 0 calc(72px + env(safe-area-inset-bottom,0px))">
+<div class="hero-banner">
+  <div class="hero-ar">المنارة</div>
+  <img class="hero-logo-img" src="data:image/png;base64,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" alt="Al-Manarah" width="72" height="72">
+  <div class="hero-label">AL-MANĀRAH</div>
+  <h1 class="hero-title">Al-Wājibāt<br>al-Mutaḥattimāt</h1>
+  <p class="hero-desc">De drie fundamenten, Aṣl ad-Dīn wa-Qāʿidatuhu, en de zeven voorwaarden van Lā ilāha illa Allāh — met bewijzen, oefening en de tussentijdse toets.</p>
+  <p class="hero-shaykh">Lessen van Shaykh Abū Muḥammad al-Shāmī ḥafiẓahu Allāh</p>
+  <div class="hero-btns">
+    <button class="btn-gold" onclick="go('leerstof')">Begin met lezen →</button>
+    <button class="btn-ghost" onclick="go('toets')">Oefentoets</button>
+  </div>
+</div>
+<div style="padding:20px 20px 0;max-width:380px;margin:0 auto">
+<div class="ml">
+<button class="mi" onclick="go('leerstof')"><div class="n">1</div><div class="i"><strong>Leerstof</strong><span>Samenvatting, definities en bewijzen</span></div></button>
+<button class="mi" onclick="go('oefenen')"><div class="n">2</div><div class="i"><strong>Oefenen</strong><span>Flashcards, bewijskaarten, checklist</span></div></button>
+<button class="mi" onclick="go('toets')"><div class="n">3</div><div class="i"><strong>Oefentoets</strong><span>30 vragen · 100 punten · 90 min</span></div></button>
+</div>
+</div>
+</div>
+
+<div class="screen" id="s-leerstof">
+<div class="sh"><div class="tr"><div><h1>Leerstof</h1><p>Tik een hoofdstuk aan om te lezen. Voortgang blijft bewaard.</p></div><button class="tb" onclick="togTheme()">☾</button></div></div>
+<div class="gl">Inleiding</div>
+<div class="lc" onclick="openCh(0)"><div class="n" id="n0">·</div><div class="b"><strong>Hoe gebruik je deze samenvatting?</strong><span>Afbakening · wat je moet kunnen</span></div></div>
+<div class="gl">1 · De drie fundamenten</div>
+<div class="lc" onclick="openCh(1)"><div class="n" id="n1">1</div><div class="b"><strong>De drie fundamenten</strong><span>Overzicht · asl · bewijs 51:56</span></div></div>
+<div class="lc" onclick="openCh(2)"><div class="n" id="n2">2</div><div class="b"><strong>Kennis van jouw Heer</strong><span>Rabb · rubūbiyyah · ulūhiyyah</span></div></div>
+<div class="lc" onclick="openCh(3)"><div class="n" id="n3">3</div><div class="b"><strong>Kennis van jouw religie</strong><span>Definitie van Islām · drie delen</span></div></div>
+<div class="lc" onclick="openCh(4)"><div class="n" id="n4">4</div><div class="b"><strong>Kennis van jouw Profeet</strong><span>Afstamming · nabī & rasūl</span></div></div>
+<div class="gl">2 · Aṣl ad-Dīn</div>
+<div class="lc" onclick="openCh(5)"><div class="n" id="n5">5</div><div class="b"><strong>Aṣl ad-Dīn wa-Qāʿidatuhu</strong><span>Nafī & ithbāt · twee hoofdzaken</span></div></div>
+<div class="gl">3 · De zeven voorwaarden</div>
+<div class="lc" onclick="openCh(6)"><div class="n" id="n6">6</div><div class="b"><strong>Overzicht van de voorwaarden</strong><span>Sharṭ · tabel · tegengestelden</span></div></div>
+<div class="lc" onclick="openCh(7)"><div class="n" id="n7">7</div><div class="b"><strong>1 · Kennis – al-ʿilm</strong><span>Betekenis kennen · 47:19</span></div></div>
+<div class="lc" onclick="openCh(8)"><div class="n" id="n8">8</div><div class="b"><strong>2 · Zekerheid – al-yaqīn</strong><span>Zonder twijfel · 49:15</span></div></div>
+<div class="lc" onclick="openCh(9)"><div class="n" id="n9">9</div><div class="b"><strong>3 · Zuivere intentie – al-ikhlāṣ</strong><span>Alleen Allāh · 98:5</span></div></div>
+<div class="lc" onclick="openCh(10)"><div class="n" id="n10">10</div><div class="b"><strong>4 · Waarachtigheid – aṣ-ṣidq</strong><span>Hart en tong · 29:2-3</span></div></div>
+<div class="lc" onclick="openCh(11)"><div class="n" id="n11">11</div><div class="b"><strong>5 · Liefde – al-maḥabbah</strong><span>Liefde voor de shahādah · 2:165</span></div></div>
+<div class="lc" onclick="openCh(12)"><div class="n" id="n12">12</div><div class="b"><strong>6 · Overgave – al-inqiyād</strong><span>Onderwerpen · 4:65</span></div></div>
+<div class="lc" onclick="openCh(13)"><div class="n" id="n13">13</div><div class="b"><strong>7 · Acceptatie – al-qabūl</strong><span>Aannemen · 37:35</span></div></div>
+<div class="gl">4 · Verbanden</div>
+<div class="lc" onclick="openCh(14)"><div class="n" id="n14">14</div><div class="b"><strong>Verbanden voor de toets</strong><span>Herken de ontbrekende voorwaarde</span></div></div>
+</div>
+
+<div class="screen" id="s-reader">
+<div class="rt"><button class="bb" onclick="go('leerstof')">←</button><button class="tb" onclick="togTheme()">☾</button></div>
+<div class="rb" id="rBody"></div>
+<div class="rn"><button id="rP" onclick="navCh(-1)">← Vorige</button><button class="nx" id="rN" onclick="navCh(1)">Volgende →</button></div>
+</div>
+
+<div class="screen" id="s-oefenen">
+<div class="sh"><div class="tr"><div><h1>Oefenen</h1><p>Oefen in je eigen woorden. Koppel elke voorwaarde aan haar tegengestelde en bewijs.</p></div><button class="tb" onclick="togTheme()">☾</button></div></div>
+<div class="oi" onclick="showF()"><div class="ic">🃏</div><div class="inf"><strong>Flashcards</strong><span>24 kaarten · voorwaarden, begrippen, bewijzen</span></div><div class="arw">→</div></div>
+<div class="oi" onclick="showB()"><div class="ic">📜</div><div class="inf"><strong>Bewijskaarten</strong><span>Zie een vers, noem de voorwaarde</span></div><div class="arw">→</div></div>
+<div class="oi" onclick="showC()"><div class="ic">✓</div><div class="inf"><strong>Checklist</strong><span id="cCnt">0 van 15 afgevinkt</span></div><div class="arw">→</div></div>
+</div>
+
+<div class="screen" id="s-flash">
+<div class="rt"><button class="bb" onclick="go('oefenen')">←</button><span style="font-weight:600;font-size:15px">Flashcards</span><button class="tb" onclick="togTheme()">☾</button></div>
+<div class="fa"><div class="fc" id="fC" onclick="flip()"><div class="sd" id="fS">VRAAG</div><div class="q" id="fQ"></div><div class="a hidden" id="fA"></div></div>
+<div class="fctl"><button onclick="fNav(-1)">←</button><div class="c" id="fCt">1 / 24</div><button onclick="fNav(1)">→</button></div>
+<div class="fh">Tik op de kaart om om te draaien</div></div>
+</div>
+
+<div class="screen" id="s-bewijs">
+<div class="rt"><button class="bb" onclick="go('oefenen')">←</button><span style="font-weight:600;font-size:15px">Bewijskaarten</span><button class="tb" onclick="togTheme()">☾</button></div>
+<div id="bList"></div>
+</div>
+
+<div class="screen" id="s-check">
+<div class="rt"><button class="bb" onclick="go('oefenen')">←</button><span style="font-weight:600;font-size:15px">Checklist</span><button class="tb" onclick="togTheme()">☾</button></div>
+<p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">Vink af wanneer je het zonder spieken kunt uitleggen.</p>
+<div id="cList"></div>
+</div>
+
+<div class="screen" id="s-toets">
+<div class="sh"><div class="tr"><div><h1>Oefentoets</h1><p>Al-Wājibāt al-Mutaḥattimāt</p></div><button class="tb" onclick="togTheme()">☾</button></div></div>
+<div class="sr"><div class="sb"><div class="nn">30</div><div class="ll">vragen</div></div><div class="sb"><div class="nn">100</div><div class="ll">punten</div></div><div class="sb"><div class="nn">90</div><div class="ll">minuten</div></div></div>
+<ul class="il"><li>Kies bij iedere vraag één beste antwoord.</li><li>Lees bij bewijs-vragen het genoemde vers en let op het tekstdeel dat de voorwaarde aanwijst.</li><li>De toets bevat 30 meerkeuzevragen en wordt automatisch nagekeken.</li><li>Je krijgt direct na het inleveren je score en de juiste antwoorden te zien.</li></ul>
+<div class="pb"><table><thead><tr><th>Toetsvorm</th><th>Vragen</th><th>Ptn</th></tr></thead><tbody>
+<tr><td>Meerkeuze — fundamenten en definities</td><td>1–10</td><td>20</td></tr><tr><td>Meerkeuze — begrippen</td><td>11–18</td><td>24</td></tr>
+<tr><td>Meerkeuze — bewijzen</td><td>19–24</td><td>24</td></tr><tr><td>Meerkeuze — toepassing</td><td>25–28</td><td>20</td></tr>
+<tr><td>Meerkeuze — verbanden en inzicht</td><td>29–30</td><td>12</td></tr></tbody></table></div>
+<div class="fd"><label>Naam (optioneel)</label><input type="text" id="tNaam" placeholder="Jouw naam"></div>
+<div class="fch"><input type="checkbox" id="tTmr" checked><label for="tTmr">Timer van 90 minuten</label></div>
+<button class="bm" onclick="startT()">Start de toets</button>
+<div class="nm">Oefennorm: 55–69 voldoende · 70–84 goed · 85–100 zeer goed</div>
+</div>
+
+<div class="screen" id="s-trun">
+<div class="rt"><button class="bb" onclick="if(confirm('Toets verlaten?'))go('toets')">←</button><span style="font-weight:600;font-size:14px" id="tPg">Vraag 1 / 30</span><span style="font-size:13px;font-weight:600;color:var(--brown)" id="tCk"></span></div>
+<div id="tQs"></div>
+<div class="tbar"><button class="pv" id="tPv" onclick="tNav(-1)">Vorige</button><button class="nx" id="tNx" onclick="tNav(1)">Volgende</button></div>
+</div>
+
+<div class="screen" id="s-result">
+<div class="rt"><button class="bb" onclick="go('start')">←</button><span style="font-weight:600">Resultaat</span><div style="width:36px"></div></div>
+<div class="rsb"><div class="sc" id="rSc">0</div><div class="lb">van de 100 punten (meerkeuze)</div><div class="gr" id="rGr">—</div></div>
+<div id="rDt" style="margin-bottom:20px"></div>
+<button class="bm" onclick="go('toets')">Opnieuw oefenen</button>
+</div>
+
+<nav class="bn" id="bNav">
+ <div class="nav-brand"><span class="nav-brand-mark">م</span><span>Al-Manārah</span></div>
+ <div class="nav-links">
+<button class="nb active" data-s="start" onclick="go('start')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg><span>Start</span></button>
+<button class="nb" data-s="leerstof" onclick="go('leerstof')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg><span>Leerstof</span></button>
+<button class="nb" data-s="oefenen" onclick="go('oefenen')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 012-2h11"/></svg><span>Oefenen</span></button>
+<button class="nb" data-s="toets" onclick="go('toets')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><span>Toets</span></button>
+ </div>
+</nav>
+</div>
+
+<script>
+const CH=[
+{h:"<h2>Hoe gebruik je deze samenvatting?</h2>\n<p>Deze samenvatting volgt de volgorde en kernbegrippen van de Nederlandse matn. De Arabische uitleg is gebruikt om korte formuleringen te verduidelijken. Het doel is dat je de stof niet alleen kunt opnoemen, maar ook in je eigen woorden kunt uitleggen.</p>\n<div class=\"nt\"><strong>Afbakening van de toets</strong><br>De leerstof begint bij de drie fundamenten en eindigt bij het laatste bewijs voor de zevende voorwaarde van Lā ilāha illa Allāh. De tenietdoeners van de Islām en alle hoofdstukken daarna vallen <em>niet</em> binnen deze samenvatting.</div>\n<h3>Na het leren moet je kunnen</h3>\n<ul>\n<li>de drie fundamenten noemen en elk fundament kort uitleggen;</li>\n<li>de twee hoofdzaken van Aṣl ad-Dīn wa-Qāʿidatuhu onderscheiden;</li>\n<li>de zeven voorwaarden van Lā ilāha illa Allāh opnoemen, uitleggen en aan hun tegengestelde koppelen;</li>\n<li>bij iedere voorwaarde minstens het belangrijkste bewijs herkennen en de bewijsvoering uitleggen;</li>\n<li>een voorbeeld analyseren en bepalen welk fundament of welke voorwaarde erbij hoort.</li>\n</ul>"},
+{h:"<h2>1. De drie fundamenten</h2>\n<p>De drie fundamenten (al-Uṣūl ath-Thalāthah) die iedere moslim moet kennen zijn: kennis van de dienaar over zijn <strong>Heer</strong>, zijn <strong>religie</strong> en zijn <strong>Profeet</strong> Muḥammad ṣallā Allāhu ʿalayhi wa-sallam.</p>\n<h3>Wat betekent aṣl?</h3>\n<p><strong>Aṣl</strong> (أصل) betekent: een fundament waarop iets anders wordt gebouwd en waaruit andere zaken voortkomen. Deze drie worden samen genoemd omdat de dienaar hierover in het graf wordt ondervraagd en omdat de hele religie erom draait.</p>\n<div class=\"ay\">\n<strong>Sūrah adh-Dhāriyāt 51:56</strong><br>\nوَمَا خَلَقْتُ الْجِنَّ وَالْإِنسَ إِلَّا لِيَعْبُدُونِ<br>\n<span class=\"fon\">wa mā khalaqtu l-jinna wa l-insa illā li-yaʿbudūn</span><br>\n<span style=\"font-size:.88em;opacity:.75\">‘Ik heb de djinn en de mensen slechts geschapen opdat zij Mij aanbidden.’</span><br>\n<button type=\"button\" class=\"play-btn\" data-s=\"51\" data-a=\"56\" onclick=\"playAyah(51,'56',this)\"><svg viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"/></svg> Beluister</button>\n</div>\n<table><thead><tr><th>Formulering</th><th>Fundament</th></tr></thead>\n<tbody>\n<tr><td>Allāh aanbidden</td><td>1. Kennis van je Heer</td></tr>\n<tr><td>Volgens een wetgeving</td><td>2. Kennis van de Islām</td></tr>\n<tr><td>Overgebracht door Zijn Boodschapper</td><td>3. Kennis van de Profeet</td></tr>\n</tbody></table>"},
+{h:"<h2>1.1 Het eerste fundament: kennis van jouw Heer</h2>\n<p>Wanneer jou wordt gevraagd: ‘Wie is jouw Heer?’, antwoord je: ‘Mijn Heer is Allāh, Degene Die mij en alle werelden met Zijn gunsten heeft grootgebracht en onderhouden. Hij is Degene Die ik aanbid; ik heb naast Hem geen andere aanbedene.’</p>\n<p>Het woord <strong>Rabb</strong> wordt gebruikt voor de Schepper, Bezitter, Bestuurder, Onderhouder en Schenker van gunsten. Wanneer rubūbiyyah afzonderlijk wordt genoemd, omvat het hier ook <strong>ulūhiyyah</strong>: Wie is jouw Schepper, Onderhouder en Aanbedene?</p>\n<div class=\"nt\"><strong>Belangrijk!</strong><br>De mushrikūn erkenden dat Allāh de Schepper en Onderhouder is. Het geschil met de boodschappers ging over <em>ulūhiyyah</em>: wie werkelijk het recht heeft om aanbeden te worden. Erkenning van rubūbiyyah alleen is daarom niet de volledige bedoeling van het antwoord.</div>\n<h3>Wat is ʿibādah?</h3>\n<ul>\n<li><strong>Gezien vanuit de aanbidder:</strong> nederigheid en onderwerping aan Allāh door gehoorzaamheid.</li>\n<li><strong>Gezien vanuit datgene waarmee wordt aanbeden:</strong> een verzamelnaam voor alles aan woorden en daden – innerlijk en uiterlijk – waarvan Allāh houdt en waarmee Hij tevreden is.</li>\n</ul>"},
+{h:"<h2>1.2 Het tweede fundament: kennis van jouw religie</h2>\n<p>Wanneer jou wordt gevraagd: ‘Wat is jouw religie?’, antwoord je: ‘Mijn religie is de Islām: jezelf aan Allāh overgeven door Tawḥīd, je aan Hem onderwerpen door gehoorzaamheid en je vrijmaken van Shirk en de mensen ervan.’</p>\n<table><thead><tr><th>Deel</th><th>Eenvoudige uitleg</th></tr></thead>\n<tbody>\n<tr><td>1. Al-istislām lillāh bit-Tawḥīd</td><td>Je onderwerpt je aan Allāh door Hem alleen te aanbidden.</td></tr>\n<tr><td>2. Al-inqiyād lahu biṭ-ṭāʿah</td><td>Je volgt Zijn bevelen en verboden met uiterlijke en innerlijke gehoorzaamheid.</td></tr>\n<tr><td>3. Al-barāʾah min ash-Shirk wa-ahlih</td><td>Je maakt je vrij van Shirk en de mensen ervan.</td></tr>\n</tbody></table>\n<p><strong>Algemeen:</strong> de religie van alle profeten – Tawḥīd, gehoorzaamheid en vrijmaking van Shirk.<br>\n<strong>Bijzonder:</strong> de Islām waarmee Muḥammad ṣallā Allāhu ʿalayhi wa-sallam werd gezonden.</p>"},
+{h:"<h2>1.3 Het derde fundament: kennis van jouw Profeet</h2>\n<p>Wanneer jou wordt gevraagd: ‘Wie is jouw Profeet?’, antwoord je: ‘Muḥammad ibn ʿAbdillāh ibn ʿAbd al-Muṭṭalib ibn Hāshim. Hāshim behoort tot Quraysh, Quraysh tot de Arabieren, en de Arabieren stammen af van Ismāʿīl ibn Ibrāhīm al-Khalīl.’</p>\n<p>Een <strong>nabī</strong> brengt openbaring over aan een gelovig volk; een <strong>rasūl</strong> wordt gezonden naar een ongelovig, tegensprekend volk.</p>\n<div class=\"nt\"><strong>Onthoud</strong><br>Dienaar van Allāh (voorkomt overdrijving) en Zijn Boodschapper (vereist liefde, eerbied en navolging).</div>\n<ul>\n<li>Hij riep in Makkah eerst jarenlang op tot Tawḥīd.</li>\n<li>Hij is de laatste van de profeten.</li>\n<li>Hij is gestorven, zoals de profeten vóór hem.</li>\n</ul>"},
+{h:"<h2>2. Aṣl ad-Dīn wa-Qāʿidatuhu</h2>\n<p>Het fundament van de religie en haar hoofdprincipe. De twee pijlers: <strong>bevestiging</strong> (ithbāt) en <strong>ontkenning</strong> (nafī).</p>\n<table><thead><tr><th>Pijler</th><th>Betekenis</th><th>In de shahādah</th></tr></thead>\n<tbody>\n<tr><td>Ithbāt</td><td>Alle ʿibādah uitsluitend voor Allāh</td><td>illā Allāh</td></tr>\n<tr><td>Nafī</td><td>Iedere valse aanbidding verwerpen</td><td>Lā ilāha</td></tr>\n</tbody></table>\n<div class=\"ay\">\n<strong>Sūrah al-Baqarah 2:256</strong><br>\nفَمَن يَكْفُرْ بِالطَّاغُوتِ وَيُؤْمِن بِاللَّهِ فَقَدِ اسْتَمْسَكَ بِالْعُرْوَةِ الْوُثْقَىٰ<br>\n<span class=\"fon\">fa-man yakfur bi-ṭ-ṭāghūti wa yuʾmin bi-llāhi fa-qadi stamsaka bi-l-ʿurwati l-wuthqā</span><br>\n<span style=\"font-size:.88em;opacity:.75\">‘Wie de ṭāghūt verwerpt en in Allāh gelooft, die heeft zich vastgegrepen aan de stevigste handgreep.’</span><br>\n<button type=\"button\" class=\"play-btn\" data-s=\"2\" data-a=\"256\" onclick=\"playAyah(2,'256',this)\"><svg viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"/></svg> Beluister</button>\n</div>\n<h3>Eerste hoofdzaak</h3>\n<p>Allāh alleen aanbidden zonder deelgenoot; hiertoe aansporen; loyaliteit tonen; degene die het verlaat als ongelovig beschouwen.</p>\n<h3>Tweede hoofdzaak</h3>\n<p>Waarschuwen tegen Shirk; streng waarschuwen; vijandschap tonen; degene die Shirk verricht als ongelovig beschouwen.</p>\n<div class=\"nt\"><strong>Essentieel</strong><br>De twee fundamentele zaken zijn: Allāh alleen aanbidden en Shirk verwerpen. Oproep, loyaliteit, vijandschap en takfīr zijn gevolgen daarvan.</div>"},
+{h:"<h2>3. De voorwaarden van Lā ilāha illa Allāh</h2>\n<p>Het uitspreken van de shahādah is niet losgemaakt van betekenis, overtuiging en handelen.</p>\n<div class=\"nt\"><strong>Een voorwaarde kennen ≠ verwezenlijken</strong><br>Iemand kan alle voorwaarden vervullen zonder de namen te kennen; een ander kent de lijst en handelt ertegen. Voor de toets moet je ze kunnen noemen; voor de religie gaat het om kennis, overtuiging en verwezenlijking.</div>\n<div class=\"nt\">\n<strong>Wat is een sharṭ?</strong><br>\nEen <strong>sharṭ</strong> (voorwaarde) is iets dat er <em>moet</em> zijn, anders komt de zaak niet tot stand — ook al is de rest in orde.\n<br><br>\n<strong>Simpel voorbeeld:</strong> de sleutel van een auto. Zonder sleutel start de auto niet, hoe goed de motor, benzine en wielen ook zijn. De sleutel is een <em>sharṭ</em> om te kunnen rijden.\n<br><br>\nNog een voorbeeld: water om te koken. Zonder water krijg je geen soep, hoeveel groenten en vuur je ook hebt.\n<br><br>\nZo is het ook bij <em>Lā ilāha illa Allāh</em>: de voorwaarden (shurūṭ) moeten aanwezig zijn. Ontbreekt er één, dan is de shahādah niet compleet zoals bedoeld.\n<br><br>\n<strong>Belangrijk:</strong> één sharṭ is niet genoeg. <em>Alle</em> shurūṭ moeten <em>tegelijk</em> aanwezig zijn. Net als bij de auto: je hebt de sleutel nodig, <em>én</em> benzine, <em>én</em> werkende wielen — niet alleen de sleutel. Zo moet je bij de shahādah kennis, zekerheid, ikhlāṣ, ṣidq, maḥabbah, inqiyād en qabūl samen verwezenlijken.\n</div>\n<p style=\"font-size:13px;color:var(--muted);margin-bottom:8px\">Tik op een voorwaarde voor een simpel voorbeeld:</p>\n<div style=\"margin-bottom:10px\">\n<button type=\"button\" class=\"sharq\" onclick=\"showEx('al-ilm')\">1. al-ʿilm</button>\n<button type=\"button\" class=\"sharq\" onclick=\"showEx('al-yaqin')\">2. al-yaqīn</button>\n<button type=\"button\" class=\"sharq\" onclick=\"showEx('al-ikhlas')\">3. al-ikhlāṣ</button>\n<button type=\"button\" class=\"sharq\" onclick=\"showEx('as-sidq')\">4. aṣ-ṣidq</button>\n<button type=\"button\" class=\"sharq\" onclick=\"showEx('al-mahabbah')\">5. al-maḥabbah</button>\n<button type=\"button\" class=\"sharq\" onclick=\"showEx('al-inqiyd')\">6. al-inqiyād</button>\n<button type=\"button\" class=\"sharq\" onclick=\"showEx('al-qabul')\">7. al-qabūl</button>\n</div>\n<div id=\"exBox\"></div>\n<table><thead><tr><th>#</th><th>Voorwaarde</th><th>Tegengestelde</th></tr></thead>\n<tbody>\n<tr><td>1</td><td>Kennis – al-ʿilm</td><td>Onwetendheid</td></tr>\n<tr><td>2</td><td>Zekerheid – al-yaqīn</td><td>Twijfel / onzekerheid</td></tr>\n<tr><td>3</td><td>Zuivere intentie – al-ikhlāṣ</td><td>Shirk</td></tr>\n<tr><td>4</td><td>Waarachtigheid – aṣ-ṣidq</td><td>Leugenachtigheid</td></tr>\n<tr><td>5</td><td>Liefde – al-maḥabbah</td><td>Afkeer / haat</td></tr>\n<tr><td>6</td><td>Overgave – al-inqiyād</td><td>Weigering</td></tr>\n<tr><td>7</td><td>Acceptatie – al-qabūl</td><td>Verwerping</td></tr>\n</tbody></table>\n<div class=\"ay\" style=\"text-align:center;direction:rtl\">\nعِلْمٌ يَقِينٌ وَإِخْلَاصٌ وَصِدْقُكَ مَعْ • مَحَبَّةٍ وَانْقِيَادٍ وَالْقَبُولِ لَهَا<br>\n<span class=\"fon\" style=\"direction:ltr;display:block;text-align:center\">ʿilmun yaqīnun wa ikhlāṣun wa ṣidquka maʿ • maḥabbatin wa nqiyādin wa l-qabūli lahā</span>\n</div>\n<p style=\"font-size:13.5px;color:var(--muted)\">Kennis, zekerheid, zuiverheid en jouw waarachtigheid, samen met liefde, overgave en acceptatie ervan.</p>"},
+{h:"<h2>3.1 Kennis – al-ʿilm</h2>\n<p>Kennis betekent dat je de betekenis van Lā ilāha illa Allāh begrijpt: <strong>niets of niemand heeft het recht om aanbeden te worden behalve Allāh</strong>. Ontkenning van iedere valse aanbidding + bevestiging van alle ʿibādah voor Allāh alleen.</p>\n<div class=\"nt\"><strong>Veelgemaakte fout</strong><br>Niet slechts: ‘Er is geen schepper behalve Allāh.’ Quraysh erkende dat Allāh de Schepper is, maar verzette zich tegen ulūhiyyah.</div>\n<div class=\"ay\">\n<strong>Sūrah Muḥammad 47:19</strong><br>\nفَاعْلَمْ أَنَّهُ لَا إِلَٰهَ إِلَّا اللَّهُ<br>\n<span class=\"fon\">faʿlam annahu lā ilāha illā Allāh</span><br>\n<span style=\"font-size:.88em;opacity:.75\">‘Weet dus dat niemand het recht heeft om aanbeden te worden behalve Allāh.’</span><br>\n<button type=\"button\" class=\"play-btn\" data-s=\"47\" data-a=\"19\" onclick=\"playAyah(47,'19',this)\"><svg viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"/></svg> Beluister</button>\n</div>\n<p><em>Waarom bewijs?</em> Allāh beveelt eerst kennis. Alleen klanken uitspreken zonder de betekenis te kennen, voldoet niet.</p>\n<div class=\"hd\">\n<div class=\"hd-intro\">Van ʿUthmān ibn ʿAffān (raḍiya Allāhu ʿanhu) dat de Boodschapper van Allāh ﷺ zei:</div>\n<div class=\"hd-ar\">مَنْ مَاتَ وَهُوَ يَعْلَمُ أَنَّهُ لَا إِلَٰهَ إِلَّا اللَّهُ، دَخَلَ الْجَنَّةَ</div>\n<div class=\"hd-mean\">«Wie sterft terwijl hij weet dat er geen god is die het recht heeft om aanbeden te worden behalve Allāh, zal het Paradijs binnengaan.»</div>\n<div class=\"src\">Ṣaḥīḥ Muslim, kitāb al-īmān, nr. 26</div>\n</div><div class=\"nt\" style=\"margin-top:14px\"><strong>Simpel voorbeeld</strong><br>Simpel voorbeeld: Iemand zegt de shahādah maar denkt dat het alleen betekent “Allāh is de Schepper”. De mushrikūn wisten dat ook. Hij mist de kennis dat niemand aanbeden mag worden behalve Allāh.</div>"},
+{h:"<h2>3.2 Zekerheid – al-yaqīn</h2>\n<p>Zekerheid is volkomen kennis zonder twijfel. De kennis moet in het hart vaststaan.</p>\n<p><strong>Kennis</strong> = wat betekent de shahādah? <strong>Zekerheid</strong> = staat dit zonder twijfel vast?</p>\n<div class=\"ay\">\n<strong>Sūrah al-Ḥujurāt 49:15</strong><br>\nإِنَّمَا الْمُؤْمِنُونَ الَّذِينَ آمَنُوا بِاللَّهِ وَرَسُولِهِ ثُمَّ لَمْ يَرْتَابُوا<br>\n<span class=\"fon\">innamā l-muʾminūna lladhīna āmanū bi-llāhi wa rasūlihi thumma lam yartābū</span><br>\n<span style=\"font-size:.88em;opacity:.75\">‘De gelovigen zijn slechts degenen die in Allāh en Zijn Boodschapper geloven en daarna niet twijfelen.’</span><br>\n<button type=\"button\" class=\"play-btn\" data-s=\"49\" data-a=\"15\" onclick=\"playAyah(49,'15',this)\"><svg viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"/></svg> Beluister</button>\n</div>\n<p><em>Waarom bewijs?</em> De woorden <em>thumma lam yartābū</em> bewijzen zekerheid.</p>\n<div class=\"hd\">\n<div class=\"hd-intro\">Van Abū Hurayrah (raḍiya Allāhu ʿanhu) dat de Boodschapper van Allāh ﷺ zei:</div>\n<div class=\"hd-ar\">أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ وَأَنِّي رَسُولُ اللَّهِ، لَا يَلْقَى اللَّهَ بِهِمَا عَبْدٌ غَيْرَ شَاكٍّ فِيهِمَا إِلَّا دَخَلَ الْجَنَّةَ</div>\n<div class=\"hd-mean\">«Ik getuig dat er geen god is die het recht heeft om aanbeden te worden behalve Allāh, en dat ik de Boodschapper van Allāh ben. Geen dienaar ontmoet Allāh met deze twee (getuigenissen), zonder eraan te twijfelen, of hij zal het Paradijs binnengaan.»</div>\n<div class=\"src\">Ṣaḥīḥ Muslim, kitāb al-īmān, nr. 27</div>\n</div><div class=\"nt\" style=\"margin-top:14px\"><strong>Simpel voorbeeld</strong><br>Simpel voorbeeld: Iemand kent de betekenis, maar denkt soms: “misschien is er toch een andere weg.” Dan is er geen zekerheid.</div>"},
+{h:"<h2>3.3 Zuivere intentie – al-ikhlāṣ</h2>\n<p>Al-ikhlāṣ: de dienaar richt zijn ʿibādah uitsluitend tot Allāh. Tegengestelde: Shirk.</p>\n<div class=\"ay\">\n<strong>Sūrah al-Bayyinah 98:5</strong><br>\nوَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا اللَّهَ مُخْلِصِينَ لَهُ الدِّينَ حُنَفَاءَ<br>\n<span class=\"fon\">wa mā umirū illā li-yaʿbudū Allāha mukhliṣīna lahu d-dīna ḥunafāʾ</span><br>\n<span style=\"font-size:.88em;opacity:.75\">‘Zij werden slechts bevolen Allāh te aanbidden, de religie zuiver aan Hem wijdend als ḥunafāʾ.’</span><br>\n<button type=\"button\" class=\"play-btn\" data-s=\"98\" data-a=\"5\" onclick=\"playAyah(98,'5',this)\"><svg viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"/></svg> Beluister</button>\n</div>\n<div class=\"hd\">\n<div class=\"hd-intro\">Van Abū Hurayrah (raḍiya Allāhu ʿanhu): Er werd gevraagd: «O Boodschapper van Allāh, wie is de gelukkigste van de mensen met jouw voorspraak op de Dag der Opstanding?» De Boodschapper van Allāh ﷺ zei:</div>\n<div class=\"hd-ar\">أَسْعَدُ النَّاسِ بِشَفَاعَتِي يَوْمَ الْقِيَامَةِ مَنْ قَالَ لَا إِلَٰهَ إِلَّا اللَّهُ خَالِصًا مِنْ قَلْبِهِ أَوْ نَفْسِهِ</div>\n<div class=\"hd-mean\">«De gelukkigste van de mensen met mijn voorspraak op de Dag der Opstanding is degene die Lā ilāha illa Allāh zegt, zuiver vanuit zijn hart of zijn ziel.»</div>\n<div class=\"src\">Ṣaḥīḥ al-Bukhārī, kitāb al-ʿilm, nr. 99</div>\n</div><div class=\"nt\" style=\"margin-top:14px\"><strong>Simpel voorbeeld</strong><br>Simpel voorbeeld: Iemand bidt of zegt de shahādah om indruk te maken op mensen, niet puur voor Allāh. Dan ontbreekt ikhlāṣ.</div>"},
+{h:"<h2>3.4 Waarachtigheid – aṣ-ṣidq</h2>\n<p>Aṣ-ṣidq: de tong zegt wat werkelijk in het hart is. Tegengestelde: leugenachtigheid (hypocrieten).</p>\n<div class=\"ay\">\n<strong>Sūrah al-ʿAnkabūt 29:2-3</strong><br>\nأَحَسِبَ النَّاسُ أَن يُتْرَكُوا أَن يَقُولُوا آمَنَّا وَهُمْ لَا يُفْتَنُونَ … فَلَيَعْلَمَنَّ اللَّهُ الَّذِينَ صَدَقُوا وَلَيَعْلَمَنَّ الْكَاذِبِينَ<br>\n<span class=\"fon\">a-ḥasiba n-nāsu an yutrakū an yaqūlū āmannā wa hum lā yuftanūn … fa-layaʿlamanna llāhu lladhīna ṣadaqū wa layaʿlamanna l-kādhibīn</span><br>\n<span style=\"font-size:.88em;opacity:.75\">‘Denken de mensen dat zij met rust worden gelaten wanneer zij zeggen: Wij geloven, terwijl zij niet beproefd worden? … Allāh zal de waarachtigen en de leugenaars kennen.’</span><br>\n<button type=\"button\" class=\"play-btn\" data-s=\"29\" data-a=\"2-3\" onclick=\"playAyah(29,'2-3',this)\"><svg viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"/></svg> Beluister</button>\n</div>\n<div class=\"ay\">\n<strong>Sūrah al-Baqarah 2:8</strong><br>\nوَمِنَ النَّاسِ مَن يَقُولُ آمَنَّا بِاللَّهِ وَبِالْيَوْمِ الْآخِرِ وَمَا هُم بِمُؤْمِنِينَ<br>\n<span class=\"fon\">wa mina n-nāsi man yaqūlu āmannā bi-llāhi wa bi-l-yawmi l-ākhiri wa mā hum bi-muʾminīn</span><br>\n<span style=\"font-size:.88em;opacity:.75\">‘Onder de mensen zijn er die zeggen: Wij geloven in Allāh en in de Laatste Dag, terwijl zij geen gelovigen zijn.’</span><br>\n<button type=\"button\" class=\"play-btn\" data-s=\"2\" data-a=\"8\" onclick=\"playAyah(2,'8',this)\"><svg viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"/></svg> Beluister</button>\n</div><div class=\"nt\" style=\"margin-top:14px\"><strong>Simpel voorbeeld</strong><br>Simpel voorbeeld: Iemand zegt met de tong “ik geloof”, maar in het hart ontkent hij het — zoals de hypocrieten. Tong en hart komen niet overeen.</div>"},
+{h:"<h2>3.5 Liefde – al-maḥabbah</h2>\n<p>Liefde voor de shahādah, haar betekenis en wat eruit voortvloeit. Liefde omwille van Allāh is Tawḥīd; vergoddelijkende liefde naast Allāh is Shirk.</p>\n<div class=\"ay\">\n<strong>Sūrah al-Baqarah 2:165</strong><br>\nوَمِنَ النَّاسِ مَن يَتَّخِذُ مِن دُونِ اللَّهِ أَندَادًا يُحِبُّونَهُمْ كَحُبِّ اللَّهِ وَالَّذِينَ آمَنُوا أَشَدُّ حُبًّا لِّلَّهِ<br>\n<span class=\"fon\">wa mina n-nāsi man yattakhidhu min dūni llāhi andādan yuḥibbūnahum ka-ḥubbi llāh wa lladhīna āmanū ashaddu ḥubban li-llāh</span><br>\n<span style=\"font-size:.88em;opacity:.75\">‘Onder de mensen zijn er die naast Allāh gelijken nemen… Maar degenen die geloven zijn sterker in liefde voor Allāh.’</span><br>\n<button type=\"button\" class=\"play-btn\" data-s=\"2\" data-a=\"165\" onclick=\"playAyah(2,'165',this)\"><svg viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"/></svg> Beluister</button>\n</div>\n<div class=\"hd\">\n<div class=\"hd-intro\">Van Anas ibn Mālik (raḍiya Allāhu ʿanhu) dat de Profeet ﷺ zei:</div>\n<div class=\"hd-ar\">ثَلَاثٌ مَنْ كُنَّ فِيهِ وَجَدَ حَلَاوَةَ الْإِيمَانِ: أَنْ يَكُونَ اللَّهُ وَرَسُولُهُ أَحَبَّ إِلَيْهِ مِمَّا سِوَاهُمَا، وَأَنْ يُحِبَّ الْمَرْءَ لَا يُحِبُّهُ إِلَّا لِلَّهِ، وَأَنْ يَكْرَهَ أَنْ يَعُودَ فِي الْكُفْرِ كَمَا يَكْرَهُ أَنْ يُقْذَفَ فِي النَّارِ</div>\n<div class=\"hd-mean\">«Drie (eigenschappen): wie ze in zich heeft, vindt de zoetheid van het geloof: (1) dat Allāh en Zijn Boodschapper hem geliefder zijn dan al het andere; (2) dat hij iemand liefheeft en hem slechts omwille van Allāh liefheeft; (3) dat hij er een afkeer van heeft om terug te keren naar ongeloof, zoals hij er een afkeer van heeft om in het Vuur geworpen te worden.»</div>\n<div class=\"src\">Ṣaḥīḥ al-Bukhārī nr. 16 · Ṣaḥīḥ Muslim nr. 43</div>\n</div><div class=\"nt\" style=\"margin-top:14px\"><strong>Simpel voorbeeld</strong><br>Simpel voorbeeld: Iemand houdt meer van een persoon of ding dan van Allāh, op een manier die alleen Allāh toekomt. Dan ontbreekt ware maḥabbah.</div>"},
+{h:"<h2>3.6 Overgave – al-inqiyād</h2>\n<p>Je onderwerpen aan de rechten van Lā ilāha illa Allāh: innerlijk en uiterlijk gehoorzamen.</p>\n<div class=\"ay\">\n<strong>Sūrah an-Nisāʾ 4:65</strong><br>\nفَلَا وَرَبِّكَ لَا يُؤْمِنُونَ حَتَّىٰ يُحَكِّمُوكَ فِيمَا شَجَرَ بَيْنَهُمْ ثُمَّ لَا يَجِدُوا فِي أَنفُسِهِمْ حَرَجًا مِّمَّا قَضَيْتَ وَيُسَلِّمُوا تَسْلِيمًا<br>\n<span class=\"fon\">fa-lā wa rabbika lā yuʾminūna ḥattā yuḥakkimūka fīmā shajara baynahum thumma lā yajidū fī anfusihim ḥarajan mimmā qaḍayta wa yusallimū taslīmā</span><br>\n<span style=\"font-size:.88em;opacity:.75\">‘Nee, bij jouw Heer, zij geloven niet totdat zij jou laten oordelen… en zich volledig overgeven.’</span><br>\n<button type=\"button\" class=\"play-btn\" data-s=\"4\" data-a=\"65\" onclick=\"playAyah(4,'65',this)\"><svg viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"/></svg> Beluister</button>\n</div>\n<p><em>Drie stappen:</em> (1) de Profeet laten oordelen, (2) geen innerlijke weerstand, (3) volledig overgeven.</p><div class=\"nt\" style=\"margin-top:14px\"><strong>Simpel voorbeeld</strong><br>Simpel voorbeeld: Iemand zegt “het is waar” en twijfelt niet, maar weigert te gehoorzamen (bijv. bidden). Dan ontbreekt inqiyād.</div>"},
+{h:"<h2>3.7 Acceptatie – al-qabūl</h2>\n<p>Het aannemen van de oproep van de Profeet ṣallā Allāhu ʿalayhi wa-sallam. Tegengestelde: afwijzing uit hoogmoed of blinde navolging.</p>\n<div class=\"ay\">\n<strong>Sūrah aṣ-Ṣāffāt 37:35</strong><br>\nإِنَّهُمْ كَانُوا إِذَا قِيلَ لَهُمْ لَا إِلَٰهَ إِلَّا اللَّهُ يَسْتَكْبِرُونَ<br>\n<span class=\"fon\">innahum kānū idhā qīla lahum lā ilāha illā Allāh yastakbirūn</span><br>\n<span style=\"font-size:.88em;opacity:.75\">‘Zij waren immers, wanneer tot hen werd gezegd: Lā ilāha illa Allāh, hoogmoedig.’</span><br>\n<button type=\"button\" class=\"play-btn\" data-s=\"37\" data-a=\"35\" onclick=\"playAyah(37,'35',this)\"><svg viewBox=\"0 0 24 24\"><path d=\"M8 5v14l11-7z\"/></svg> Beluister</button>\n</div>\n<div class=\"hd\">\n<div class=\"hd-intro\">Van Abū Mūsā al-Ashʿarī (raḍiya Allāhu ʿanhu) dat de Profeet ﷺ zei:</div>\n<div class=\"hd-ar\">مَثَلُ مَا بَعَثَنِي اللَّهُ بِهِ مِنَ الْهُدَى وَالْعِلْمِ كَمَثَلِ الْغَيْثِ الْكَثِيرِ أَصَابَ أَرْضًا، فَكَانَ مِنْهَا نَقِيَّةٌ قَبِلَتِ الْمَاءَ فَأَنْبَتَتِ الْكَلَأَ وَالْعُشْبَ الْكَثِيرَ، وَكَانَتْ مِنْهَا أَجَادِبُ أَمْسَكَتِ الْمَاءَ فَنَفَعَ اللَّهُ بِهَا النَّاسَ فَشَرِبُوا وَسَقَوْا وَزَرَعُوا، وَأَصَابَتْ مِنْهَا طَائِفَةً أُخْرَى إِنَّمَا هِيَ قِيعَانٌ لَا تُمْسِكُ مَاءً وَلَا تُنْبِتُ كَلَأً، فَذَلِكَ مَثَلُ مَنْ فَقِهَ فِي دِينِ اللَّهِ وَنَفَعَهُ مَا بَعَثَنِي اللَّهُ بِهِ فَعَلِمَ وَعَلَّمَ، وَمَثَلُ مَنْ لَمْ يَرْفَعْ بِذَلِكَ رَأْسًا وَلَمْ يَقْبَلْ هُدَى اللَّهِ الَّذِي أُرْسِلْتُ بِهِ</div>\n<div class=\"hd-mean\">«Het voorbeeld van de leiding en kennis waarmee Allāh mij heeft gezonden is als overvloedige regen die op de aarde valt. Een deel is vruchtbare grond die het water opneemt en overvloedig gras en kruiden voortbrengt. Een ander deel is harde grond die het water vasthoudt, zodat Allāh de mensen ermee baat: zij drinken, drenken en bebouwen. En een deel treft een andere streek die slechts vlakten zijn die geen water vasthouden en geen gras voortbrengen. Dat is het voorbeeld van wie begrip krijgt in de religie van Allāh en baat heeft bij wat Allāh via mij zond: hij leert en onderwijst. En het voorbeeld van wie zijn hoofd daarvoor niet opheft en de leiding van Allāh waarmee ik gezonden ben niet aanvaardt.»</div>\n<div class=\"src\">Ṣaḥīḥ al-Bukhārī nr. 79 · Ṣaḥīḥ Muslim</div>\n</div>\n<p style=\"margin-top:12px\"><strong>Drie soorten grond:</strong> (1) vruchtbare grond = leert en onderwijst; (2) harde grond = bewaart en geeft door; (3) vlakke/onvruchtbare grond = aanvaardt de leiding niet → ontbreken van <em>al-qabūl</em>.</p><div class=\"nt\" style=\"margin-top:14px\"><strong>Simpel voorbeeld</strong><br>Simpel voorbeeld: Iemand begrijpt Tawḥīd, maar zegt: “Ik volg mijn familie, niet deze oproep.” Afwijzing uit trots of blinde navolging — geen qabūl.</div>"},
+{h:"<h2>4. Verbanden die je moet zien</h2>\n<table><thead><tr><th>Vraag</th><th>Verband</th></tr></thead>\n<tbody>\n<tr><td>Wie is jouw Heer?</td><td>Bevestigt dat ʿibādah alleen voor Allāh is</td></tr>\n<tr><td>Wat is jouw religie?</td><td>Verbindt ontkenning, bevestiging en inqiyād</td></tr>\n<tr><td>Wie is jouw Profeet?</td><td>Rechten van de shahādah volgens zijn boodschap</td></tr>\n</tbody></table>\n<h3>Herken de ontbrekende voorwaarde</h3>\n<table><thead><tr><th>Voorbeeld</th><th>Ontbreekt</th></tr></thead>\n<tbody>\n<tr><td>Denkt dat shahādah alleen ‘geen Schepper…’ betekent</td><td>Kennis (al-ʿilm)</td></tr>\n<tr><td>Kent de betekenis maar blijft twijfelen</td><td>Zekerheid (al-yaqīn)</td></tr>\n<tr><td>Zegt shahādah terwijl hij een ander aanbidt</td><td>Ikhlāṣ</td></tr>\n<tr><td>Spreekt geloof uit, hart ontkent</td><td>Waarachtigheid (aṣ-ṣidq)</td></tr>\n<tr><td>Haat de shahādah</td><td>Liefde (al-maḥabbah)</td></tr>\n<tr><td>Erkent als waar, weigert te gehoorzamen</td><td>Overgave (al-inqiyād)</td></tr>\n<tr><td>Wijst af uit hoogmoed of voorouders</td><td>Acceptatie (al-qabūl)</td></tr>\n</tbody></table>\n<div style=\"margin-top:28px;padding-top:20px;border-top:1px solid var(--border);text-align:center\">\n<p style=\"font-size:14px;color:var(--muted);margin-bottom:14px\">Einde van de leerstof</p>\n<button type=\"button\" class=\"bm\" onclick=\"go('start')\" style=\"max-width:280px;margin:0 auto\">← Terug naar home</button>\n<button type=\"button\" class=\"btn-ghost\" onclick=\"go('oefenen')\" style=\"margin-top:10px;color:var(--brown);border-color:var(--border);max-width:280px\">Ga oefenen →</button>\n</div>\n"}
+];
+
+const FC=[
+{q:"Wat zijn de drie fundamenten?",a:"Kennis van de Heer, de religie en de Profeet salla Allāhu alayhi wa-sallam."},
+{q:"Wat betekent aṣl?",a:"Een fundament waarop iets anders wordt gebouwd en waaruit andere zaken voortkomen."},
+{q:"Wat omvat ‘Wie is jouw Rabb?’?",a:"Schepper, Onderhouder én Aanbedene (rubūbiyyah + ulūhiyyah)."},
+{q:"Drie delen van de definitie van Islām?",a:"1. Al-istislām lillāh bit-Tawḥīd  2. Al-inqiyād lahu biṭ-ṭāʿah  3. Al-barāʾah min ash-Shirk wa-ahlih"},
+{q:"Verschil nabī en rasūl?",a:"Een rasūl wordt gezonden naar een ongelovig, tegensprekend volk; een nabī brengt openbaring over aan een gelovig volk. Iedere rasūl is een nabī, niet iedere nabī is een rasūl."},
+{q:"Twee pijlers van Lā ilāha illa Allāh?",a:"Nafī (ontkenning) en ithbāt (bevestiging)."},
+{q:"De zeven voorwaarden in volgorde?",a:"al-ʿilm, al-yaqīn, al-ikhlāṣ, aṣ-ṣidq, al-maḥabbah, al-inqiyād, al-qabūl"},
+{q:"Tegengestelde van al-ʿilm?",a:"Onwetendheid"},
+{q:"Tegengestelde van al-yaqīn?",a:"Twijfel"},
+{q:"Tegengestelde van al-ikhlāṣ?",a:"Shirk"},
+{q:"Tegengestelde van aṣ-ṣidq?",a:"Leugenachtigheid"},
+{q:"Tegengestelde van al-maḥabbah?",a:"Afkeer / haat"},
+{q:"Tegengestelde van al-inqiyād?",a:"Weigering"},
+{q:"Tegengestelde van al-qabūl?",a:"Verwerping"},
+{q:"Welke voorwaarde bewijst dit vers?\n\nفَاعْلَمْ أَنَّهُ لَا إِلَٰهَ إِلَّا اللَّهُ\n(Muḥammad 47:19)\n“Weet dus dat niemand het recht heeft om aanbeden te worden behalve Allāh.”",a:"al-ʿilm — het bevel ‘weet’ koppelt de shahādah aan kennis."},
+{q:"Welke woorden in dit vers bewijzen zekerheid?\n\nإِنَّمَا الْمُؤْمِنُونَ الَّذِينَ آمَنُوا بِاللَّهِ وَرَسُولِهِ ثُمَّ لَمْ يَرْتَابُوا\n(al-Ḥujurāt 49:15)\n“De gelovigen zijn slechts degenen die in Allāh en Zijn Boodschapper geloven en daarna niet twijfelen.”",a:"thumma lam yartābū — ‘daarna twijfelen zij niet’"},
+{q:"Welke voorwaarde bewijst dit vers?\n\nوَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا اللَّهَ مُخْلِصِينَ لَهُ الدِّينَ حُنَفَاءَ\n(al-Bayyinah 98:5)\n“Zij werden slechts bevolen Allāh te aanbidden, de religie zuiver aan Hem wijdend als ḥunafāʾ.”",a:"al-ikhlāṣ"},
+{q:"Welke voorwaarde bewijzen deze verzen?\n\nأَحَسِبَ النَّاسُ أَن يُتْرَكُوا أَن يَقُولُوا آمَنَّا وَهُمْ لَا يُفْتَنُونَ … فَلَيَعْلَمَنَّ اللَّهُ الَّذِينَ صَدَقُوا وَلَيَعْلَمَنَّ الْكَاذِبِينَ\n(al-ʿAnkabūt 29:2-3)\n“Denken de mensen dat zij met rust worden gelaten wanneer zij zeggen: Wij geloven, terwijl zij niet beproefd worden? … Allāh zal de waarachtigen en de leugenaars kennen.”",a:"aṣ-ṣidq"},
+{q:"Welke voorwaarde bewijst dit vers?\n\nوَالَّذِينَ آمَنُوا أَشَدُّ حُبًّا لِّلَّهِ\n(al-Baqarah 2:165)\n“Maar degenen die geloven zijn sterker in liefde voor Allāh.”",a:"al-maḥabbah"},
+{q:"Noem de drie stappen in dit vers:\n\nفَلَا وَرَبِّكَ لَا يُؤْمِنُونَ حَتَّىٰ يُحَكِّمُوكَ فِيمَا شَجَرَ بَيْنَهُمْ ثُمَّ لَا يَجِدُوا فِي أَنفُسِهِمْ حَرَجًا مِّمَّا قَضَيْتَ وَيُسَلِّمُوا تَسْلِيمًا\n(an-Nisāʾ 4:65)\n“Nee, bij jouw Heer, zij geloven niet totdat zij jou laten oordelen in wat tussen hen is opgekomen, daarna in zichzelf geen weerzin vinden tegen wat jij besloten hebt, en zich volledig overgeven.”",a:"1. De Profeet laten oordelen  2. Geen innerlijke weerstand  3. Volledig overgeven"},
+{q:"Welke grond = ontbreken al-qabūl?",a:"De vlakke, onvruchtbare grond (hadith Abu Musa)."},
+{q:"Correcte betekenis van Lā ilāha illa Allāh?",a:"Niets of niemand heeft het recht aanbeden te worden behalve Allāh."},
+{q:"Eerste hoofdzaak van Aṣl ad-Dīn?",a:"Allāh alleen aanbidden zonder deelgenoot (ithbāt)."},
+{q:"Tweede hoofdzaak van Aṣl ad-Dīn?",a:"Waarschuwen tegen en vrijmaking van Shirk (nafī)."}
+];
+const BW=[
+{v:"فَاعْلَمْ أَنَّهُ لَا إِلَٰهَ إِلَّا اللَّهُ",r:"Muḥammad 47:19",fon:"faʿlam annahu lā ilāha illā Allāh",nl:"Weet dus dat niemand het recht heeft om aanbeden te worden behalve Allāh.",s:47,ay:19,ans:"<strong>al-ʿilm</strong> — Het bevel ‘faʿlam’ (weet) koppelt de shahādah aan kennis van haar betekenis."},
+{v:"ثُمَّ لَمْ يَرْتَابُوا",r:"al-Ḥujurāt 49:15",fon:"thumma lam yartābū",nl:"De gelovigen zijn slechts degenen die in Allāh en Zijn Boodschapper geloven en daarna niet twijfelen.",s:49,ay:15,ans:"<strong>al-yaqīn</strong> — ‘Daarna twijfelen zij niet’ bewijst zekerheid."},
+{v:"مُخْلِصِينَ لَهُ الدِّينَ حُنَفَاءَ",r:"al-Bayyinah 98:5",fon:"mukhliṣīna lahu d-dīna ḥunafāʾ",nl:"Zij werden slechts bevolen Allāh te aanbidden, de religie zuiver aan Hem wijdend als ḥunafāʾ.",s:98,ay:5,ans:"<strong>al-ikhlāṣ</strong> — De religie zuiver voor Allāh maken."},
+{v:"فَلَيَعْلَمَنَّ اللَّهُ الَّذِينَ صَدَقُوا",r:"al-ʿAnkabūt 29:3",fon:"fa-layaʿlamanna llāhu lladhīna ṣadaqū",nl:"Allāh zal de waarachtigen en de leugenaars duidelijk maken.",s:29,ay:3,ans:"<strong>aṣ-ṣidq</strong> — Beproeving maakt waarachtigen en leugenaars zichtbaar."},
+{v:"وَالَّذِينَ آمَنُوا أَشَدُّ حُبًّا لِّلَّهِ",r:"al-Baqarah 2:165",fon:"wa lladhīna āmanū ashaddu ḥubban li-llāh",nl:"Maar degenen die geloven zijn sterker in liefde voor Allāh.",s:2,ay:165,ans:"<strong>al-maḥabbah</strong> — De gelovigen zijn sterker in liefde voor Allāh."},
+{v:"وَيُسَلِّمُوا تَسْلِيمًا",r:"an-Nisāʾ 4:65",fon:"wa yusallimū taslīmā",nl:"Nee, bij jouw Heer: zij geloven niet totdat zij jou laten oordelen over hun geschillen, daarna in zichzelf geen weerstand voelen tegen jouw oordeel en zich volledig overgeven.",s:4,ay:65,ans:"<strong>al-inqiyād</strong> — (1) de Profeet als rechter aanvaarden in geschillen; (2) innerlijk geen weerstand voelen tegen zijn oordeel; (3) zich volledig overgeven."},
+{v:"إِذَا قِيلَ لَهُمْ لَا إِلَٰهَ إِلَّا اللَّهُ يَسْتَكْبِرُونَ",r:"aṣ-Ṣāffāt 37:35",fon:"idhā qīla lahum lā ilāha illā Allāh yastakbirūn",nl:"Wanneer tegen hen werd gezegd: ‘Niemand heeft het recht aanbeden te worden behalve Allāh,’ waren zij hoogmoedig.",s:37,ay:35,ans:"<strong>al-qabūl</strong> — Zij waren hoogmoedig en weigerden te accepteren."},
+{v:"فَمَن يَكْفُرْ بِالطَّاغُوتِ وَيُؤْمِن بِاللَّهِ",r:"al-Baqarah 2:256",fon:"fa-man yakfur bi-ṭ-ṭāghūti wa yuʾmin bi-llāh",nl:"Wie de ṭāghūt verwerpt en in Allāh gelooft, heeft zich werkelijk vastgegrepen aan het stevigste houvast, dat niet kan breken.",s:2,ay:256,ans:"<strong>Nafī + ithbāt</strong> — Verwerpen van de ṭāghūt en geloven in Allāh."}
+];
+
+const CL=["Ik kan de drie fundamenten noemen.","Ik kan ‘Wie is jouw Heer?’ uitleggen.","Ik ken beide definities van ʿibādah.","Ik kan de definitie van Islām in drie delen noemen.","Ik ken het verschil algemene/bijzondere Islām.","Ik kan de afstamming van de Profeet noemen.","Ik begrijp dienaar én Boodschapper.","Ik kan de twee hoofdzaken van Aṣl ad-Dīn uitleggen.","Ik kan nafī en ithbāt aanwijzen.","Ik ken de zeven voorwaarden in volgorde.","Ik kan iedere voorwaarde aan haar tegengestelde koppelen.","Ik kan bij iedere voorwaarde het bewijs herkennen.","Ik kan uitleggen waarom ieder bewijs past.","Ik kan voorbeelden analyseren.","Ik weet waar de toetsstof eindigt."];
+
+const LEGACY_TQ=[
+{type:"mc",p:2,q:"Welke opsomming geeft de drie fundamenten correct weer?",opts:["Kennis van Allāh, de engelen en de Boeken", "Kennis van de Heer, de religie en de Profeet", "Islām, īmān en iḥsān", "Rubūbiyyah, ulūhiyyah en al-asmāʾ waṣ-ṣifāt"],ans:1},
+{type:"mc",p:2,q:"Wat omvat de vraag ‘Wie is jouw Rabb?’ volgens de uitleg?",opts:["Alleen: wie heeft jou geschapen?", "Alleen: wie geeft jou voorziening?", "Wie is jouw Schepper, Onderhouder en Aanbedene?", "Welke profeet heeft jou de wetgeving gebracht?"],ans:2},
+{type:"mc",p:2,q:"Welke formulering is de definitie van Islām uit de matn?",opts:["Kennis, zekerheid en waarachtigheid", "Overgave aan Allāh door Tawḥīd, gehoorzaamheid en vrijmaking van Shirk en haar mensen", "Liefde voor Allāh en goede omgang met iedereen", "Het uitspreken van de shahādah zonder verdere voorwaarden"],ans:1},
+{type:"mc",p:2,q:"Wat betekent Islām in de algemene betekenis?",opts:["Alleen de Sharīʿah van Muḥammad", "De gemeenschappelijke religie van alle profeten: Tawḥīd en overgave aan Allāh", "Alleen de vijf uiterlijke pijlers", "Iedere vorm van religieuze overtuiging"],ans:1},
+{type:"mc",p:2,q:"Wat is volgens de gebruikte uitleg het onderscheid tussen een nabī en een rasūl?",opts:["Een nabī krijgt geen openbaring", "Een rasūl hoeft niets over te brengen", "Een rasūl wordt gezonden naar een ongelovig volk; een nabī brengt openbaring over aan een gelovig volk", "Er is geen verschil tussen beide"],ans:2},
+{type:"mc",p:2,q:"Welke twee zaken zijn de eigenlijke pijlers van Lā ilāha illa Allāh?",opts:["Kennis en liefde", "Nafī en ithbāt", "Oproep en geduld", "Angst en hoop"],ans:1},
+{type:"mc",p:2,q:"Wat is de correcte betekenis van Lā ilāha illa Allāh?",opts:["Er bestaat niets behalve Allāh", "Er is geen Schepper behalve Allāh", "Niets of niemand heeft het recht aanbeden te worden behalve Allāh", "Iedere aanbidding leidt uiteindelijk tot Allāh"],ans:2},
+{type:"mc",p:2,q:"Welke voorwaarde staat tegenover onwetendheid over de betekenis van de shahādah?",opts:["Al-qabūl", "Al-maḥabbah", "Al-ʿilm", "Aṣ-ṣidq"],ans:2},
+{type:"mc",p:2,q:"Welk bewijs voor zekerheid staat in dit vers?\n\nإِنَّمَا الْمُؤْمِنُونَ الَّذِينَ آمَنُوا بِاللَّهِ وَرَسُولِهِ ثُمَّ لَمْ يَرْتَابُوا\n(al-Ḥujurāt 49:15)\n“De gelovigen zijn slechts degenen die in Allāh en Zijn Boodschapper geloven en daarna niet twijfelen.”",opts:["Zij geven zakāh", "Daarna twijfelen zij niet", "Zij spreken zacht", "Zij reizen over de aarde"],ans:1},
+{type:"mc",p:2,q:"Wat is het tegengestelde van al-qabūl?",opts:["Onwetendheid", "Twijfel", "Leugenachtigheid", "Verwerping"],ans:3},
+{type:"open",p:3,q:"Wat betekent het woord aṣl? Noem ook één reden waarom juist de drie fundamenten samen worden behandeld.",m:"Asl is een fundament waarop iets anders wordt gebouwd. Samen omdat de dienaar erover in het graf wordt ondervraagd, of omdat de hele religie erom draait."},
+{type:"open",p:3,q:"Geef de twee definities van ʿibādah: vanuit de aanbidder en vanuit datgene waarmee wordt aanbeden.",m:"Vanuit de aanbidder: nederigheid en onderwerping aan Allāh door gehoorzaamheid. Vanuit datgene waarmee wordt aanbeden: alles van innerlijke en uiterlijke woorden en daden waarvan Allāh houdt en waarmee Hij tevreden is."},
+{type:"open",p:3,q:"Schrijf de afstamming van de Profeet Muḥammad ṣallā Allāhu ʿalayhi wa-sallam op zoals in de matn, tot en met Ibrāhīm.",m:"Muhammad ibn Abdillah ibn Abd al-Muttalib ibn Hashim. Hashim → Quraysh → Arabieren → Ismail ibn Ibrahim."},
+{type:"open",p:3,q:"Noem de eerste en tweede hoofdzaak van Aṣl ad-Dīn wa-Qāʿidatuhu in een kernachtige formulering.",m:"1. Allāh alleen aanbidden zonder deelgenoot. 2. Waarschuwen tegen en vrijmaking van Shirk."},
+{type:"open",p:3,q:"Wat is een sharṭ (voorwaarde)? Leg uit waarom de aanwezigheid van één voorwaarde niet automatisch betekent dat het geheel aanwezig is.",m:"Een sharṭ is iets waarvan de afwezigheid betekent dat het gevraagde niet tot stand komt. De aanwezigheid van één voorwaarde garandeert het geheel niet, omdat een andere noodzakelijke voorwaarde kan ontbreken."},
+{type:"open",p:3,q:"Leg het verschil uit tussen al-ʿilm en al-yaqīn.",m:"Al-ilm is weten wat de shahādah betekent. Al-yaqin is dat deze kennis zonder twijfel vaststaat."},
+{type:"open",p:3,q:"Leg het verschil uit tussen al-ikhlāṣ en aṣ-ṣidq.",m:"Al-ikhlas: voor wie de aanbidding is. As-sidq: overeenstemming tussen hart en tong."},
+{type:"open",p:3,q:"Wat omvat de voorwaarde al-maḥabbah? Noem ook haar tegengestelde.",m:"Liefde voor de shahādah, haar betekenis en wat zij vereist; liefde voor Allāh, Zijn Boodschapper, gehoorzaamheid en degenen van wie Allāh houdt. Tegengestelde: afkeer/haat van de shahādah en haar betekenis."},
+{type:"open",p:4,q:"Welke voorwaarde bewijst dit vers?\n\nفَاعْلَمْ أَنَّهُ لَا إِلَٰهَ إِلَّا اللَّهُ\n(Muḥammad 47:19)\n“Weet dus dat niemand het recht heeft om aanbeden te worden behalve Allāh.”\n\nLeg uit waarom.",m:"al-ʿilm (kennis). Het bevel faʿlam (weet) koppelt de shahādah aan kennis van haar betekenis."},
+{type:"open",p:4,q:"Welke voorwaarde bewijst dit vers?\n\nإِنَّمَا الْمُؤْمِنُونَ الَّذِينَ آمَنُوا بِاللَّهِ وَرَسُولِهِ ثُمَّ لَمْ يَرْتَابُوا\n(al-Ḥujurāt 49:15)\n“De gelovigen zijn slechts degenen die in Allāh en Zijn Boodschapper geloven en daarna niet twijfelen.”\n\nLeg uit waarom.",m:"al-yaqīn (zekerheid). Thumma lam yartābū = daarna twijfelen zij niet."},
+{type:"open",p:4,q:"Welke voorwaarde bewijst dit vers?\n\nوَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا اللَّهَ مُخْلِصِينَ لَهُ الدِّينَ حُنَفَاءَ\n(al-Bayyinah 98:5)\n“Zij werden slechts bevolen Allāh te aanbidden, de religie zuiver aan Hem wijdend als ḥunafāʾ.”\n\nLeg uit waarom.",m:"al-ikhlāṣ (zuivere intentie). Mukhliṣīna lahu d-dīn = de religie zuiver voor Allāh."},
+{type:"open",p:4,q:"Welke voorwaarde bewijzen deze verzen?\n\nأَحَسِبَ النَّاسُ أَن يُتْرَكُوا أَن يَقُولُوا آمَنَّا وَهُمْ لَا يُفْتَنُونَ … فَلَيَعْلَمَنَّ اللَّهُ الَّذِينَ صَدَقُوا\n(al-ʿAnkabūt 29:2-3)\n“Denken de mensen dat zij met rust worden gelaten wanneer zij zeggen: Wij geloven, terwijl zij niet beproefd worden? … Allāh zal de waarachtigen kennen.”\n\nLeg uit waarom.",m:"aṣ-ṣidq (waarachtigheid). Beproeving maakt waarachtigen en leugenaars zichtbaar."},
+{type:"open",p:4,q:"Welke voorwaarde bewijst dit vers?\n\nوَالَّذِينَ آمَنُوا أَشَدُّ حُبًّا لِّلَّهِ\n(al-Baqarah 2:165)\n“Maar degenen die geloven zijn sterker in liefde voor Allāh.”\n\nLeg uit waarom.",m:"al-maḥabbah (liefde). Vergoddelijkende liefde naast Allāh wordt veroordeeld; ware liefde is voor Allāh."},
+{type:"open",p:4,q:"Welke voorwaarde bewijst dit vers? Noem de drie stappen.\n\nفَلَا وَرَبِّكَ لَا يُؤْمِنُونَ حَتَّىٰ يُحَكِّمُوكَ فِيمَا شَجَرَ بَيْنَهُمْ ثُمَّ لَا يَجِدُوا فِي أَنفُسِهِمْ حَرَجًا مِّمَّا قَضَيْتَ وَيُسَلِّمُوا تَسْلِيمًا\n(an-Nisāʾ 4:65)\n“Nee, bij jouw Heer, zij geloven niet totdat zij jou laten oordelen in wat tussen hen is opgekomen, daarna in zichzelf geen weerzin vinden tegen wat jij besloten hebt, en zich volledig overgeven.”\n\nLeg uit.",m:"al-inqiyād (overgave). (1) Profeet als rechter (2) geen innerlijke weerstand (3) volledig overgeven."},
+{type:"open",p:5,q:"Leerling: ‘Ik geloof dat Allāh als enige schept. Daarom heb ik Lā ilāha illa Allāh verwezenlijkt.’ Beoordeel.",m:"Onvolledig. Scheppen is rubūbiyyah. Lā ilāha illa Allāh gaat over ulūhiyyah."},
+{type:"open",p:5,q:"Tong zegt geloof, hart ontkent. Welke voorwaarde ontbreekt?",m:"aṣ-ṣidq. Hart en tong stemmen niet overeen. Voorbeeld: de hypocrieten in al-Baqarah 2:8-10; zij zeggen te geloven terwijl zij geen gelovigen zijn."},
+{type:"open",p:5,q:"Weet, twijfelt niet, erkent, maar weigert te gehoorzamen. Welke ontbreekt?",m:"al-inqiyād. Kennis, zekerheid en erkenning zijn niet hetzelfde als gehoorzaamheid; inqiyād betekent innerlijke en uiterlijke onderwerping aan de rechten van de shahādah en aan wat Allāh via Zijn Boodschapper heeft voorgeschreven."},
+{type:"open",p:5,q:"Begrijpt Tawḥīd, wijst af door hoogmoed/voorouders. Welke ontbreekt?",m:"al-qabūl. Bewijs: as-Saffat 37:35 of az-Zukhruf 43:23-25."},
+{type:"open",p:6,q:"Hoe zijn de drie fundamenten, Islām-definitie en pijlers van de shahādah verbonden?",m:"Fundamenten: wie aanbidden, via welke religie, via welke Boodschapper. Islām = Tawḥīd + gehoorzaamheid + vrijmaking van Shirk. Shahadah: nafī + ithbāt."},
+{type:"open",p:6,q:"Leg de drie gronden uit (hadith Abu Musa). Welke = ontbreken al-qabūl?",m:"Goede grond: neemt op. Stevige: bewaart water. Vlakke: houdt niets vast = ontbreken al-qabūl."}
+];
+const TQ=[
+{type:"mc",p:2,q:"Welke opsomming geeft de drie fundamenten correct weer?",opts:["Kennis van Allāh, de engelen en de Boeken","Kennis van de Heer, de religie en de Profeet","Islām, īmān en iḥsān","Rubūbiyyah, ulūhiyyah en al-asmāʾ waṣ-ṣifāt"],ans:1},
+{type:"mc",p:2,q:"Wat omvat de vraag ‘Wie is jouw Rabb?’ volgens de uitleg?",opts:["Alleen: wie heeft jou geschapen?","Alleen: wie geeft jou voorziening?","Wie is jouw Schepper, Onderhouder en Aanbedene?","Welke profeet heeft jou de wetgeving gebracht?"],ans:2},
+{type:"mc",p:2,q:"Welke formulering is de definitie van Islām uit de matn?",opts:["Kennis, zekerheid en waarachtigheid","Overgave aan Allāh door Tawḥīd, gehoorzaamheid en vrijmaking van Shirk en haar mensen","Liefde voor Allāh en goede omgang met iedereen","Het uitspreken van de shahādah zonder verdere voorwaarden"],ans:1},
+{type:"mc",p:2,q:"Wat betekent Islām in de algemene betekenis?",opts:["Alleen de Sharīʿah van Muḥammad","De gemeenschappelijke religie van alle profeten: Tawḥīd, gehoorzaamheid en vrijmaking van Shirk","Alleen de vijf uiterlijke pijlers","Iedere vorm van religieuze overtuiging"],ans:1},
+{type:"mc",p:2,q:"Wat is volgens de uitleg het onderscheid tussen een nabī en een rasūl?",opts:["Een nabī krijgt geen openbaring","Een rasūl hoeft niets over te brengen","Een rasūl wordt gezonden naar een ongelovig, tegensprekend volk; een nabī brengt openbaring over aan een gelovig volk","Er is geen verschil tussen beide"],ans:2},
+{type:"mc",p:2,q:"Welke twee zaken zijn de eigenlijke pijlers van Lā ilāha illa Allāh?",opts:["Kennis en liefde","Nafī en ithbāt","Oproep en geduld","Angst en hoop"],ans:1},
+{type:"mc",p:2,q:"Wat is de correcte betekenis van Lā ilāha illa Allāh?",opts:["Er bestaat niets behalve Allāh","Er is geen Schepper behalve Allāh","Niets of niemand heeft het recht aanbeden te worden behalve Allāh","Iedere aanbidding leidt uiteindelijk tot Allāh"],ans:2},
+{type:"mc",p:2,q:"Welke voorwaarde staat tegenover onwetendheid over de betekenis van de shahādah?",opts:["Al-qabūl","Al-maḥabbah","Al-ʿilm","Aṣ-ṣidq"],ans:2},
+{type:"mc",p:2,q:"Welke woorden vormen het directe bewijs voor zekerheid in Sūrah al-Ḥujurāt 49:15?",opts:["Zij geven zakāh","Daarna twijfelen zij niet","Zij spreken zacht","Zij reizen over de aarde"],ans:1},
+{type:"mc",p:2,q:"Wat is het tegengestelde van al-qabūl?",opts:["Onwetendheid","Twijfel","Leugenachtigheid","Verwerping"],ans:3},
+{type:"mc",p:3,q:"Wat betekent het woord aṣl, en waarom worden de drie fundamenten samen behandeld?",opts:["Een wet die alleen voor de Profeet geldt; omdat ze in één hoofdstuk staan","Een fundament waarop iets wordt gebouwd; omdat de dienaar hierover in het graf wordt ondervraagd en de religie erom draait","Een bewijs uit de Sunnah; omdat alle drie over fiqh gaan","Een naam voor de vijf zuilen; omdat ze dezelfde handelingen beschrijven"],ans:1},
+{type:"mc",p:3,q:"Welke omschrijving geeft beide definities van ʿibādah correct weer?",opts:["Alleen uiterlijke rituelen en alleen vrijwillige daden","Nederigheid en onderwerping aan Allāh; en alles aan innerlijke en uiterlijke woorden en daden waarvan Allāh houdt","Alleen het uitspreken van de shahādah en het leren van de Arabische taal","Liefde voor mensen en afstand nemen van alle wereldse zaken"],ans:1},
+{type:"mc",p:3,q:"Welke afstamming volgt de formulering uit de matn correct?",opts:["Muḥammad ibn ʿAbdillāh ibn Abū Ṭālib → Quraysh → Romeinen → Isḥāq","Muḥammad ibn ʿAbdillāh ibn ʿAbd al-Muṭṭalib ibn Hāshim; Hāshim behoort tot Quraysh, Quraysh tot de Arabieren, en de Arabieren stammen af van Ismāʿīl ibn Ibrāhīm","Muḥammad ibn ʿAbdillāh ibn Hāshim → Anṣār → Ismāʿīl","Muḥammad ibn ʿAbd al-Muṭṭalib ibn Hāshim → Quraysh → Perzen → Ibrāhīm"],ans:1},
+{type:"mc",p:3,q:"Wat zijn de twee hoofd­zaken van Aṣl ad-Dīn wa-Qāʿidatuhu?",opts:["Allāh alleen aanbidden en Shirk in aanbidding verwerpen","Kennis opdoen en veel reizen","Angst en hoop combineren","De vijf zuilen leren en Arabisch spreken"],ans:0},
+{type:"mc",p:3,q:"Wat is een sharṭ, en waarom is één aanwezige voorwaarde niet automatisch voldoende?",opts:["Een aanbevolen handeling; één voorwaarde is altijd genoeg","Iets waarvan de afwezigheid betekent dat de zaak niet tot stand komt; andere noodzakelijke voorwaarden kunnen nog ontbreken","Een synoniem voor een bewijs; bewijzen hebben geen voorwaarden","Een historische gebeurtenis; voorwaarden gelden alleen voor toetsen"],ans:1},
+{type:"mc",p:3,q:"Wat is het juiste verschil tussen al-ʿilm en al-yaqīn?",opts:["Al-ʿilm is liefde en al-yaqīn is aanbidding","Al-ʿilm is weten wat de shahādah betekent; al-yaqīn is dat deze kennis zonder twijfel vaststaat","Al-ʿilm is gehoorzaamheid en al-yaqīn is acceptatie","Er is geen verschil tussen beide termen"],ans:1},
+{type:"mc",p:3,q:"Wat is het juiste verschil tussen al-ikhlāṣ en aṣ-ṣidq?",opts:["Al-ikhlāṣ gaat over voor wie de aanbidding is; aṣ-ṣidq over overeenstemming tussen hart en tong","Al-ikhlāṣ gaat over twijfel; aṣ-ṣidq over kennis","Al-ikhlāṣ betekent afwijzing; aṣ-ṣidq betekent liefde","Beide betekenen precies hetzelfde als al-qabūl"],ans:0},
+{type:"mc",p:3,q:"Wat omvat al-maḥabbah, en wat is haar tegengestelde?",opts:["Liefde voor de shahādah, haar betekenis en wat zij vereist; het tegengestelde is afkeer of haat","Alleen liefde voor mensen; het tegengestelde is kennis","Twijfel aan de shahādah; het tegengestelde is zekerheid","Gehoorzaamheid zonder liefde; het tegengestelde is Shirk"],ans:0},
+{type:"mc",p:4,q:"Welke voorwaarde wordt bewezen door Sūrah Muḥammad 47:19: فَاعْلَمْ أَنَّهُ لَا إِلَٰهَ إِلَّا اللَّهُ?",opts:["Al-ʿilm, omdat het vers beveelt de betekenis van de shahādah te kennen","Al-yaqīn, omdat het vers over twijfel spreekt","Al-qabūl, omdat het vers over voorouders spreekt","Al-maḥabbah, omdat het vers liefde beschrijft"],ans:0},
+{type:"mc",p:4,q:"Welke voorwaarde wordt direct aangewezen door ‘ثُمَّ لَمْ يَرْتَابُوا’ in Sūrah al-Ḥujurāt 49:15?",opts:["Al-ikhlāṣ","Al-yaqīn","Al-inqiyād","Al-qabūl"],ans:1},
+{type:"mc",p:4,q:"Welke voorwaarde wordt bewezen door ‘مُخْلِصِينَ لَهُ الدِّينَ’ in Sūrah al-Bayyinah 98:5?",opts:["Aṣ-ṣidq","Al-maḥabbah","Al-ikhlāṣ","Al-ʿilm"],ans:2},
+{type:"mc",p:4,q:"Welke voorwaarde wordt verduidelijkt door Sūrah al-ʿAnkabūt 29:1-3?",opts:["Aṣ-ṣidq: beproeving maakt waarachtigen en leugenaars zichtbaar","Al-qabūl: mensen volgen hun voorouders","Al-yaqīn: mensen twijfelen niet","Al-inqiyād: mensen geven zich over"],ans:0},
+{type:"mc",p:4,q:"Welke uitspraak over Sūrah al-Baqarah 2:165 en al-maḥabbah klopt?",opts:["Het vers veroordeelt natuurlijke liefde voor familie","Het vers veroordeelt aanbiddende of vergoddelijkende liefde voor rivalen naast Allāh, niet natuurlijke liefde of liefde omwille van Allāh","Het vers bewijst dat liefde geen onderdeel van Tawḥīd is","Het vers gaat alleen over kennis van de shahādah"],ans:1},
+{type:"mc",p:4,q:"Welke drie stappen staan in Sūrah an-Nisāʾ 4:65 en bewijzen al-inqiyād?",opts:["De Profeet laten oordelen, innerlijk geen weerstand voelen en zich volledig overgeven","De shahādah leren, haar opschrijven en haar vertalen","Liefhebben, vrezen en hopen zonder te handelen","Voorouders volgen, afgoden behouden en zwijgen"],ans:0},
+{type:"mc",p:5,q:"Een leerling zegt: ‘Allāh schept en voorziet als enige, dus ik heb de volledige betekenis van Lā ilāha illa Allāh verwezenlijkt.’ Wat is de beste beoordeling?",opts:["Volledig juist: rubūbiyyah alleen is de volledige shahādah","Onvolledig: rubūbiyyah erkent Schepper en Onderhouder, maar de shahādah bevestigt ook ulūhiyyah: aanbidding is alleen voor Allāh","Onjuist omdat Allāh geen Schepper is","Volledig juist zolang iemand de Arabische woorden kent"],ans:1},
+{type:"mc",p:5,q:"Iemand zegt met zijn tong dat hij gelooft, maar zijn hart ontkent dit. Welke voorwaarde ontbreekt vooral?",opts:["Al-ʿilm","Aṣ-ṣidq; de hypocrieten worden in al-Baqarah 2:8-10 als voorbeeld genoemd","Al-maḥabbah","Al-qabūl; het gaat alleen om afwijzing door voorouders"],ans:1},
+{type:"mc",p:5,q:"Iemand kent de shahādah, twijfelt niet en erkent haar als waar, maar weigert zich aan de bevelen van Allāh en de boodschap van de Profeet te onderwerpen. Welke voorwaarde ontbreekt vooral?",opts:["Al-inqiyād, omdat kennis en erkenning nog geen innerlijke en uiterlijke onderwerping zijn","Al-ʿilm, omdat hij de betekenis niet kent","Al-yaqīn, omdat hij volgens de situatie per definitie twijfelt","Al-maḥabbah, omdat liefde nooit met gehoorzaamheid te maken heeft"],ans:0},
+{type:"mc",p:5,q:"Een volk begrijpt Tawḥīd maar wijst het af uit hoogmoed en blinde navolging van voorouders. Welke voorwaarde ontbreekt vooral?",opts:["Al-qabūl; passende bewijzen zijn az-Zukhruf 43:23-25 en aṣ-Ṣāffāt 37:35-36","Al-ʿilm; zij begrijpen de oproep niet","Al-yaqīn; zij hebben geen kennis van de tekst","Al-ikhlāṣ; het probleem is alleen riyāʾ"],ans:0},
+{type:"mc",p:6,q:"Welke samenhang tussen de drie fundamenten, Islām en de shahādah is correct?",opts:["De fundamenten gaan alleen over geschiedenis en staan los van de shahādah","De fundamenten beantwoorden wie wij aanbidden, via welke religie en via welke Boodschapper; Islām omvat Tawḥīd, gehoorzaamheid en vrijmaking van Shirk; de shahādah bevat nafī en ithbāt","Islām betekent alleen kennis en nafī betekent liefde","De Profeet bepaalt wie aanbidding verdient en Allāh bepaalt alleen de wetgeving"],ans:1},
+{type:"mc",p:6,q:"Welke grond uit de gelijkenis van Abū Mūsā staat voor het ontbreken van al-qabūl?",opts:["De vruchtbare grond die water opneemt en groeit","De grond die water bewaart zodat anderen ervan profiteren","De vlakke, onvruchtbare grond die geen water vasthoudt en niets voortbrengt","Alle drie de soorten grond"],ans:2}
+];
+const SK='manarah_v3';
+let st={theme:'light',read:[],checks:[]};
+try{st=Object.assign(st,JSON.parse(localStorage.getItem(SK)||'{}'))}catch(e){}
+function save(){try{localStorage.setItem(SK,JSON.stringify(st))}catch(e){}}
+let cur=0,fi=0,ff=false,ti=0,ta=[],tt=null,ts=5400;
+window.go = function go(n){
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+const m={start:'s-start',leerstof:'s-leerstof',reader:'s-reader',oefenen:'s-oefenen',flash:'s-flash',bewijs:'s-bewijs',check:'s-check',toets:'s-toets',trun:'s-trun',result:'s-result'};
+const el=document.getElementById(m[n]||'s-start');if(el){el.classList.add('active');el.scrollTop=0}
+document.querySelectorAll('.nb').forEach(b=>{
+const a=b.dataset.s===n||(n==='reader'&&b.dataset.s==='leerstof')||(['flash','bewijs','check'].includes(n)&&b.dataset.s==='oefenen')||(['trun','result'].includes(n)&&b.dataset.s==='toets');
+b.classList.toggle('active',a)});
+document.getElementById('bNav').style.display=(n==='trun')?'none':'flex';
+upd()}
+window.togTheme = function togTheme(){st.theme=st.theme==='light'?'dark':'light';document.body.setAttribute('data-theme',st.theme);save()}
+document.body.setAttribute('data-theme',st.theme);
+window.openCh = function openCh(i){cur=i;if(!st.read.includes(i)){st.read.push(i);save()}document.getElementById('rBody').innerHTML=CH[i].h;document.getElementById('rP').disabled=i===0;document.getElementById('rN').disabled=false;
+var rn=document.getElementById('rN');
+if(i===CH.length-1){rn.textContent='← Home';rn.onclick=function(){go('start')}}
+else{rn.textContent='Volgende';rn.onclick=function(){navCh(1)}}
+go('reader')}
+window.navCh = function navCh(d){const n=cur+d;if(n>=0&&n<CH.length)openCh(n)}
+function upd(){for(let i=0;i<15;i++){const e=document.getElementById('n'+i);if(e)e.classList.toggle('done',st.read.includes(i))}const c=document.getElementById('cCnt');if(c)c.textContent=st.checks.length+' van 15 afgevinkt'}
+window.showF = function showF(){fi=0;ff=false;rF();go('flash')}
+function rF(){const c=FC[fi];document.getElementById('fQ').innerHTML=String(c.q).replace(/\n/g,'<br>');document.getElementById('fA').textContent=c.a;document.getElementById('fA').classList.add('hidden');document.getElementById('fQ').classList.remove('hidden');document.getElementById('fC').classList.remove('fl');document.getElementById('fS').textContent='VRAAG';document.getElementById('fCt').textContent=(fi+1)+' / '+FC.length;ff=false}
+window.flip = function flip(){ff=!ff;document.getElementById('fC').classList.toggle('fl',ff);document.getElementById('fQ').classList.toggle('hidden',ff);document.getElementById('fA').classList.toggle('hidden',!ff);document.getElementById('fS').textContent=ff?'ANTWOORD':'VRAAG'}
+window.fNav = function fNav(d){fi=(fi+d+FC.length)%FC.length;rF()}
+window.showB = function showB(){
+  document.getElementById('bList').innerHTML = BW.map(function(b,i){
+    return '<div class="bc" id="bc'+i+'">'
+      +'<div class="v">'+b.v+'</div>'
+      +'<div class="fon" style="direction:ltr;text-align:left;font-size:13px;color:var(--muted);font-style:italic;margin:4px 0 6px">'+(b.fon||'')+'</div>'
+      +'<div class="r">'+b.r+'</div>'
+       +'<div class="nl"><strong>Vertaling</strong>'+(b.nl||'')+'</div>'
+      +'<button type="button" class="play-btn" onclick="playAyah('+b.s+','+b.ay+',this)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> Beluister</button> '
+      +'<button type="button" class="rv" onclick="revB('+i+')">Toon voorwaarde</button>'
+      +'<div class="an">'+(b.ans||'')+'</div></div>';
+  }).join('');
+  go('bewijs');
+}
+window.revB = function revB(i){document.getElementById('bc'+i).classList.add('sh')}
+window.showC = function showC(){document.getElementById('cList').innerHTML=CL.map((t,i)=>`<label class="ci ${st.checks.includes(i)?'done':''}"><input type="checkbox" ${st.checks.includes(i)?'checked':''} onchange="togC(${i},this)"><span>${t}</span></label>`).join('');go('check')}
+window.togC = function togC(i,el){if(el.checked){if(!st.checks.includes(i))st.checks.push(i)}else{st.checks=st.checks.filter(x=>x!==i)}save();el.closest('.ci').classList.toggle('done',el.checked);upd()}
+window.startT = function startT(){ti=0;ta=TQ.map(()=>null);if(document.getElementById('tTmr').checked){ts=5400;tt=setInterval(()=>{ts--;const m=Math.floor(ts/60),s=ts%60;document.getElementById('tCk').textContent=m+':'+String(s).padStart(2,'0');if(ts<=0){clearInterval(tt);finT()}},1000)}else{document.getElementById('tCk').textContent=''}rTQ();go('trun')}
+function rTQ(){const t=TQ[ti];document.getElementById('tPg').textContent='Vraag '+(ti+1)+' / '+TQ.length;let h=`<div class="qc"><div class="qm">Vraag ${ti+1} · ${t.p} punt${t.p>1?'en':''}</div><div class="qt">${String(t.q).replace(/\n/g,"<br>")}</div>`;if(t.type==='mc'){h+=t.opts.map((o,i)=>`<label class="op ${ta[ti]===i?'sel':''}"><input type="radio" name="q" value="${i}" ${ta[ti]===i?'checked':''} onchange="setA(${i})"><span>${String.fromCharCode(65+i)}. ${o}</span></label>`).join('')}else{h+=`<textarea placeholder="Jouw antwoord…" oninput="setA(this.value)">${ta[ti]||''}</textarea>`}h+='</div>';document.getElementById('tQs').innerHTML=h;document.getElementById('tPv').disabled=ti===0;document.getElementById('tNx').textContent=ti===TQ.length-1?'Inleveren':'Volgende'}
+window.setA = function setA(v){ta[ti]=v;if(typeof v==='number')document.querySelectorAll('.op').forEach((o,i)=>o.classList.toggle('sel',i===v))}
+window.tNav = function tNav(d){if(d===1&&ti===TQ.length-1){finT();return}ti=Math.max(0,Math.min(TQ.length-1,ti+d));rTQ();document.getElementById('s-trun').scrollTop=0}
+window.finT = function finT(){if(tt)clearInterval(tt);let sc=0,dt='';TQ.forEach((t,i)=>{if(t.type==='mc'){const ok=ta[i]===t.ans;if(ok)sc+=t.p;dt+=`<div class="qc" style="margin-bottom:10px"><div class="qm">Vraag ${i+1} · ${ok?'✓ +'+t.p:'✗ 0'}/${t.p}</div><div style="font-size:14px">${String(t.q).replace(/\n/g,"<br>")}</div><div style="font-size:13px;margin-top:6px;color:var(--muted)">Jouw antwoord: ${ta[i]!=null?String.fromCharCode(65+ta[i])+'. '+t.opts[ta[i]]:'—'}</div>${!ok?`<div style="font-size:13px;color:var(--brown);margin-top:4px">Juist: ${String.fromCharCode(65+t.ans)}. ${t.opts[t.ans]}</div>`:''}</div>`}else{dt+=`<div class="qc" style="margin-bottom:10px"><div class="qm">Vraag ${i+1} · open · max ${t.p} p</div><div style="font-size:14px">${String(t.q).replace(/\n/g,"<br>")}</div><div style="font-size:13px;margin-top:8px;padding:10px;background:var(--num);border-radius:8px"><strong>Jouw antwoord:</strong><br>${ta[i]||'<em>geen antwoord</em>'}</div><div style="font-size:13px;margin-top:8px;padding:10px;background:var(--soft);border-radius:8px"><strong>Modelantwoord:</strong><br>${t.m}</div></div>`}});document.getElementById('rSc').textContent=sc;document.getElementById('rGr').textContent=sc>=85?'Zeer goed':sc>=70?'Goed':sc>=55?'Voldoende (MC)':'Onvoldoende (MC)';document.getElementById('rDt').innerHTML=`<p style="font-size:13px;color:var(--muted);margin-bottom:12px">Alle 30 meerkeuzevragen zijn automatisch nagekeken. De puntverdeling blijft 100 punten.</p>`+dt;go('result')}
+
+/* Quran audio */
+let currentAudio=null;
+function ayahUrl(s,a){return 'https://everyayah.com/data/Alafasy_128kbps/'+String(s).padStart(3,'0')+String(a).padStart(3,'0')+'.mp3'}
+window.playAyah = function playAyah(surah,ayah,btn){
+  try{
+    const urls=[];
+    const aStr=String(ayah);
+    if(aStr.indexOf('-')>=0){const p=aStr.split('-');for(let i=+p[0];i<=+p[1];i++)urls.push(ayahUrl(surah,i))}
+    else urls.push(ayahUrl(surah,+ayah));
+    if(currentAudio){try{currentAudio.pause()}catch(e){}currentAudio=null;document.querySelectorAll('.play-btn.playing').forEach(function(b){b.classList.remove('playing')})}
+    if(btn&&btn.classList.contains('playing')){btn.classList.remove('playing');return}
+    var idx=0;
+    function next(){
+      if(idx>=urls.length){if(btn)btn.classList.remove('playing');currentAudio=null;return}
+      var a=new Audio(urls[idx++]);
+      currentAudio=a;
+      if(btn)btn.classList.add('playing');
+      var p=a.play();
+      if(p&&p.catch)p.catch(function(err){console.warn(err);if(btn)btn.classList.remove('playing');currentAudio=null});
+      a.onended=next;
+      a.onerror=function(){if(btn)btn.classList.remove('playing');currentAudio=null};
+    }
+    next();
+  }catch(e){console.error(e);if(btn)btn.classList.remove('playing')}
+}
+
+
+const EX={
+"al-ilm":{t:"al-ʿilm — Kennis",e:"Simpel: Je zegt de shahādah, maar je moet weten wat die betekent. Niet alleen “Allāh is de Schepper” (dat wisten de mushrikūn ook), maar: niemand mag aanbeden worden behalve Allāh. Voorbeeld: iemand denkt dat de shahādah alleen over scheppen gaat → hij mist de kennis."},
+"al-yaqin":{t:"al-yaqīn — Zekerheid",e:"Simpel: Je kent de betekenis en je twijfelt er niet aan. Voorbeeld: iemand zegt de shahādah maar denkt soms “misschien is er toch een andere weg” → geen zekerheid."},
+"al-ikhlas":{t:"al-ikhlāṣ — Zuivere intentie",e:"Simpel: Je aanbidding is alleen voor Allāh, niet om gezien te worden. Voorbeeld: iemand bidt mooi omdat mensen kijken → geen ikhlāṣ."},
+"as-sidq":{t:"aṣ-ṣidq — Waarachtigheid",e:"Simpel: Je tong en hart zeggen hetzelfde. Voorbeeld: iemand zegt “ik geloof” maar in zijn hart ontkent hij het → geen ṣidq (hypocriet)."},
+"al-mahabbah":{t:"al-maḥabbah — Liefde",e:"Simpel: Je houdt van Allāh en de shahādah meer dan van iets anders. Voorbeeld: iemand houdt meer van een persoon of ding dan van Allāh, op een manier die alleen Allāh toekomt → geen maḥabbah."},
+"al-inqiyd":{t:"al-inqiyād — Overgave",e:"Simpel: je onderwerpt je innerlijk en uiterlijk aan de rechten van de shahādah. Voorbeeld: iemand weet en erkent wat de shahādah betekent, maar weigert zich aan de bevelen van Allāh en Zijn Boodschapper te onderwerpen → geen inqiyād."},
+"al-qabul":{t:"al-qabūl — Acceptatie",e:"Simpel: Je wijst de boodschap niet af uit trots of “onze voorouders deden het anders”. Voorbeeld: iemand begrijpt Tawḥīd maar volgt alleen de familie → geen qabūl."}
+};
+window.showEx = function showEx(key){
+  var x=EX[key]; if(!x) return;
+  var box=document.getElementById('exBox');
+  if(!box){ alert(x.t + ' — ' + x.e); return; }
+  box.innerHTML='';
+  var card=document.createElement('div');
+  card.className='ex-card';
+  var s=document.createElement('strong'); s.textContent=x.t; card.appendChild(s);
+  var p=document.createElement('p'); p.textContent=x.e; card.appendChild(p);
+  var btn=document.createElement('button');
+  btn.type='button'; btn.className='ex-close'; btn.textContent='Sluiten';
+  btn.onclick=function(){ box.innerHTML=''; };
+  card.appendChild(btn);
+  box.appendChild(card);
+}
+
+
+/* Swipe navigation */
+(function(){
+  var sx=0, sy=0, st=0;
+  var minX=50, maxY=80;
+  document.addEventListener('touchstart', function(e){
+    if(!e.touches || e.touches.length!==1) return;
+    sx=e.touches[0].clientX; sy=e.touches[0].clientY; st=Date.now();
+  }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if(!e.changedTouches || e.changedTouches.length!==1) return;
+    var dx=e.changedTouches[0].clientX-sx;
+    var dy=e.changedTouches[0].clientY-sy;
+    var dt=Date.now()-st;
+    if(dt>600 || Math.abs(dx)<minX || Math.abs(dy)>maxY) return;
+    // ignore swipes starting on inputs
+    var t=e.target;
+    if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.tagName==='SELECT'||t.isContentEditable)) return;
+    var active=document.querySelector('.screen.active');
+    if(!active) return;
+    var id=active.id;
+    var left=dx>0; // swipe right = previous
+    if(id==='s-reader'){
+      if(left) navCh(-1); else navCh(1);
+    } else if(id==='s-flash'){
+      if(left) fNav(-1); else fNav(1);
+    } else if(id==='s-trun'){
+      if(left) tNav(-1); else tNav(1);
+    } else if(id==='s-leerstof'){
+      // optional: no chapter open yet
+    }
+  }, {passive:true});
+})();
+
+upd();
+</script>
+</body>
+</html>
